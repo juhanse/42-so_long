@@ -6,31 +6,41 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2024/11/06 14:35:33 by juhanse          ###   ########.fr        #
+#    Updated: 2024/11/26 12:43:11 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-SRC = $(addprefix src/, main.c)
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
-OBJ := $(SRC:%.c=%.o)
+PATH_LIB = lib/
+PATH_SRCS = srcs/
 
-CC = gcc
-CCFLAGS = -Wextra -Wall -Werror
+LIB = ft_strlen.c ft_putstr.c ft_putchar.c ft_putnbr_base.c
+SRCS = ft_convert.c ft_print_memory.c
+HEADERS = ft_printf.h
+MAIN_FILE = ft_printf.c
+
+LIB_OBJS = $(addprefix $(PATH_LIB), $(LIB:.c=.o))
+SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
+MAIN_OBJECT = $(MAIN_FILE:.c=.o)
+OBJS = $(LIB_OBJS) $(SRCS_OBJS) $(MAIN_OBJECT)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-    $(CC) $(CCFLAGS) $^ -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(NAME): $(OBJS) $(HEADERS)
+	ar -rsc $(NAME) $(OBJS)
 
-%.o: %.c
-	gcc $(CCFLAGS) -Imlx -Iincludes -c $< -o $@
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
-	make clean -C mlx/
 	rm -f $(NAME)
 
-re : fclean all
+re: fclean all
+
+.PHONY: all clean fclean re
