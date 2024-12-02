@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2024/12/02 12:15:17 by juhanse          ###   ########.fr       */
+/*   Updated: 2024/12/02 12:21:43 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,11 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
+
+typedef struct s_vars
+{
+	int	x;
+	int	y;
+}	t_vars;
 
 #endif
