@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2024/11/26 12:43:11 by juhanse          ###   ########.fr        #
+#    Updated: 2024/12/02 12:02:45 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,29 +14,26 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-PATH_LIB = lib/
-PATH_SRCS = srcs/
+PATH_SRCS = src/
 
-LIB = ft_strlen.c ft_putstr.c ft_putchar.c ft_putnbr_base.c
-SRCS = ft_convert.c ft_print_memory.c
-HEADERS = ft_printf.h
-MAIN_FILE = ft_printf.c
+SRCS = ft_utils.c
+HEADERS = so_long.h
 
-LIB_OBJS = $(addprefix $(PATH_LIB), $(LIB:.c=.o))
 SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
-MAIN_OBJECT = $(MAIN_FILE:.c=.o)
-OBJS = $(LIB_OBJS) $(SRCS_OBJS) $(MAIN_OBJECT)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEADERS)
-	ar -rsc $(NAME) $(OBJS)
+$(NAME): $(SRCS_OBJS) $(HEADERS)
+	$(CC) $(SRCS_OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+
 clean:
-	rm -f $(OBJS)
+	rm -f $(SRCS_OBJS)
 
 fclean: clean
 	rm -f $(NAME)
