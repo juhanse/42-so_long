@@ -27,7 +27,7 @@ $(NAME): $(SRCS_OBJS)
 	$(CC) $(SRCS_OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 $(PATH_SRCS)%.o: $(PATH_SRCS)%.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean:
 	rm -f $(SRCS_OBJS)
