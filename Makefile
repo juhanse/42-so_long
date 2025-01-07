@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2024/12/20 15:13:13 by juhanse          ###   ########.fr        #
+#    Updated: 2025/01/07 11:49:51 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 PATH_SRCS = src/
 
-SRCS = main.c ft_utils.c
+SRCS = main.c
 HEADERS = so_long.h
 
 SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
@@ -24,7 +24,7 @@ SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(SRCS_OBJS)
-	$(CC) $(SRCS_OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(SRCS_OBJS) -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 -o $(NAME)
 
 $(PATH_SRCS)%.o: $(PATH_SRCS)%.c $(HEADERS)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
