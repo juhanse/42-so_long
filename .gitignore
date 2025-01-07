@@ -1,2 +1,7 @@
+# SO_LONG
 mlx
+*/*.o
+so_long
+
+# MACOS
 .DS_Store
