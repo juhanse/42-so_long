@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/16 14:18:42 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/16 14:26:34 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define X 500
-# define Y 500
+# define X 1000
+# define Y 600
 
 typedef struct	v_map
 {
