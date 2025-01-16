@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/16 14:09:58 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/16 14:18:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 
 # define X 500
 # define Y 500
+
+typedef struct	v_map
+{
+	char	*filename;
+} t_map;
 
 typedef struct	v_player
 {
