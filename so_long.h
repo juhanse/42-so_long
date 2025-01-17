@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/16 14:26:34 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/17 21:07:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 
 # define X 1000
 # define Y 600
+# define UP 126
+# define DOWN 125
+# define RIGHT 124
+# define LEFT 123
+# define W 13
+# define S 1
+# define D 2
+# define A 0
+# define ESC 53
+# define IMG_PXL 64
+# define WND_NAME "so_long"
 
 typedef struct	v_map
 {
