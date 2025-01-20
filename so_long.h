@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 16:20:50 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 16:24:01 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char		*filename;
+	char		*map_path;
 	char		**map;
 	int			line;
 	int			col;

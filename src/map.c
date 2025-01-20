@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 16:18:24 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 16:25:34 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,13 @@ void	ft_read_map(t_map *map)
 	int		fd;
 	char	*line;
 
-	fd = open(map->filename, O_RDONLY);
+	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
 		return (write(1, "Error", 5));
 	line = get_next_line(fd);
 	while (line)
 	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break ;
-		map->map[map->line] = get_next_line(fd);
+		map->map[map->line] = line;
 		map->line++;
 	}
 	close(fd);
