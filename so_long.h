@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/17 21:10:16 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:48:38 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,6 @@
 # define IMG_PXL 64
 # define WND_NAME "so_long"
 
-typedef struct	s_map
-{
-	char		*line;
-	char		*file;
-	char		*filename;
-	char		**array;
-	char		**copy;
-	int			x;
-	int			y;
-	int			c;
-	int			p;
-	int			e;
-	int			check_c;
-	int			check_e;
-	int			exit;
-	int			move;
-	void		*mlx;
-	void		*wnd;
-	t_player	player;
-	t_end		t;
-} t_map;
-
 typedef struct	s_player
 {
 	int	x;
@@ -65,5 +43,26 @@ typedef struct	s_end
 	int	x;
 	int	y;
 } t_end;
+
+typedef struct	s_map
+{
+	char		*filename;
+	int			y;
+	int			x;
+	int			c;
+	int			p;
+	int			e;
+	int			check_c;
+	int			check_e;
+	int			exit;
+	int			move;
+	void		*mlx;
+	void		*wnd;
+	t_player	player;
+	t_end		end;
+} t_map;
+
+void	ft_initialize(t_map *map, char **av);
+int		ft_parse_map(char *map);
 
 #endif
