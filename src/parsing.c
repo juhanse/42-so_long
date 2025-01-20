@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 13:31:41 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 13:34:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,6 @@ static int	ft_is_rectangle(char *map)
 			return (0);
 	}
 	return (1);
-}
-
-void	ft_free_map(char **map)
-{
-	int	i;
-
-	i = -1;
-	while (map[++i])
-		free(map[i]);
-	free(map);
-	map = NULL;
 }
 
 int	ft_parse_map(char *map)
