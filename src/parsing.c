@@ -6,72 +6,89 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 13:50:22 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:36:41 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int	ft_count_items(char *map, char type)
+static int	ft_count_items(t_map *map, char type)
 {
 	int	i;
+	int	j;
 	int	count;
 
 	i = -1;
 	count = 0;
-	while (map[++i])
+	while (map->map[++i])
 	{
-		if (map[i] == type)
-			count++;
+		j = -1;
+		while (map->map[i][++j])
+		{
+			if (map->map[i][j] == type)
+				count++;
+		}
 	}
 	return (count);
 }
 
-static int	ft_is_rectangle(char *map)
+static int	ft_is_rectangle(t_map *map)
 {
 	int	i;
-	int	j;
-	int	k;
+	int	len;
 
+	if (!map || !map->map || !map->map[0])
+        return (0);
 	i = 0;
-	while (map[i] != '\n')
-		i++;
-	j = -1;
-	while (map[++j])
+	len = ft_strlen(map->map[0]);
+	while (map->map[i])
 	{
-		k = 0;
-		while (map[k] != '\n')
-			k++;
-		if (i != k)
+		if (ft_strlen(map->map[i]) != len)
+		{
+			printf("Map is not a rectangle\n");
 			return (0);
+		}
+		i++;
 	}
 	return (1);
 }
 
-int	ft_parse_map(char *map)
+static int	ft_check_char(t_map *map)
 {
 	int	i;
+	int	j;
 
 	i = -1;
-	while (map[++i])
+	while (map->map[++i])
 	{
-		if (map[i] != '0' && map[i] != '1' && map[i] != 'C' \
-		&& map[i] != 'P' && map[i] != 'E')
+		j = -1;
+		while (map->map[i][++j])
 		{
-			printf("Invalid characters");
-			return (0);
+			if (map->map[i][j] != '0' && map->map[i][j] != '1' && map->map[i][j] != 'C' \
+			&& map->map[i][j] != 'P' && map->map[i][j] != 'E')
+			{
+				printf("Invalid characters\n");
+				return (0);
+			}
 		}
 	}
-	if (!ft_is_rectangle(map))
+	return (1);
+}
+
+int	ft_parse_map(t_map *map)
+{
+	if (!ft_check_char(map) || !ft_is_rectangle(map))
 	{
-		printf("Invalid rectangle");
+		ft_free_map(map);
+		printf("Invalid format\n");
 		return (0);
 	}
-	if (ft_count_items(map, 'E') != 1)
-		printf("Missing exit");
-	if (ft_count_items(map, 'P') != 1)
-		printf("Missing start position");
-	if (ft_count_items(map, 'C') < 1)
-		printf("Missing collectibles items");
+	if (ft_count_items(map, 'E') != 1 || ft_count_items(map, 'P') != 1 \
+	|| ft_count_items(map, 'C') < 1)
+	{
+		ft_free_map(map);
+		printf("Invalid number of items\n");
+		return (0);
+	}
 	return (1);
 }
