@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 22:08:39 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:13:05 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ static int	ft_check_walls(t_map *map)
 
 int	ft_parse_map(t_map *map)
 {
+	if (!map || !map->map || !map->map[0])
+	{
+		printf("Map is empty\n");
+		ft_free_map(map);
+		return (0);
+	}
 	if (!ft_is_rectangle(map) || !ft_check_char(map) || !ft_check_walls(map))
 	{
 		ft_free_map(map);
