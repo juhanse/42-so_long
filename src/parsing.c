@@ -6,11 +6,26 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 13:34:39 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 13:50:22 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+static int	ft_count_items(char *map, char type)
+{
+	int	i;
+	int	count;
+
+	i = -1;
+	count = 0;
+	while (map[++i])
+	{
+		if (map[i] == type)
+			count++;
+	}
+	return (count);
+}
 
 static int	ft_is_rectangle(char *map)
 {
@@ -52,5 +67,11 @@ int	ft_parse_map(char *map)
 		printf("Invalid rectangle");
 		return (0);
 	}
+	if (ft_count_items(map, 'E') != 1)
+		printf("Missing exit");
+	if (ft_count_items(map, 'P') != 1)
+		printf("Missing start position");
+	if (ft_count_items(map, 'C') < 1)
+		printf("Missing collectibles items");
 	return (1);
 }
