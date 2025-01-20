@@ -6,12 +6,27 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 16:19:29 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 16:49:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
+
+void	ft_init_struct(t_map *map, char *path)
+{
+	if (!map)
+		return (write(1, "Error", 5));
+	map->map_path = path;
+	map->map = NULL;
+	map->line = 0;
+	map->col = 0;
+	map->collects = 0;
+	map->exit = 0;
+	map->player_start = 0;
+	map->player.x = 0;
+	map->player.y = 0;
+}
 
 int	main(int argc, char **argv)
 {
@@ -22,7 +37,10 @@ int	main(int argc, char **argv)
 		printf("Invalid arguments\n");
 		return (0);
 	}
-	ft_initialize_map(argv[1]);
+	ft_init_struct(map, argv[1]);
+	ft_read_map(map);
+	ft_allocate_map(map);
+	ft_fill_map(map);
 	if (!ft_parse_map(map->map))
 		return (0);
 // 	ft_initialize(&map, argv);
