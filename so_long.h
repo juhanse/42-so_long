@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 16:18:43 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 16:20:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ typedef struct s_map
 	char		**map;
 	int			line;
 	int			col;
-	int			items;
-	int			exits;
-	int			players;
+	int			collects;
+	int			exit;
+	int			player_start;
 	void		*mlx;
 	void		*wnd;
 	t_player	player;
