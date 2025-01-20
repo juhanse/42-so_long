@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 15:23:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 15:38:22 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,17 @@ typedef struct s_player
 	int	y;
 }	t_player;
 
-typedef struct s_end
-{
-	int	x;
-	int	y;
-}	t_end;
-
 typedef struct s_map
 {
-	char		*filename;
-	char		**data;
-	int			count_line;
-	int			count_col;
-	int			x;
-	int			y;
-	int			c;
-	int			p;
-	int			e;
-	int			check_c;
-	int			check_e;
-	int			exit;
-	int			move;
+	char		**map;
+	int			width;
+	int			height;
+	int			items;
+	int			exits;
+	int			players;
 	void		*mlx;
 	void		*wnd;
 	t_player	player;
-	t_end		end;
 }	t_map;
 
 // GET_NEXT_LINE
