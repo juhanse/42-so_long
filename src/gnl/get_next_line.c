@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 23:27:01 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 13:18:00 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 13:24:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*buffer;
 
-	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0
-		|| BUFFER_SIZE >= INT32_MAX)
+	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE <= 0
+		|| BUFFER_SIZE >= INT_MAX)
 		return (NULL);
 	tmp_buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!tmp_buffer)
