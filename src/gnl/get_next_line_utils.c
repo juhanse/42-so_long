@@ -6,13 +6,13 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 23:27:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 15:50:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:05:29 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -52,23 +52,6 @@ char	*ft_strchr(const char *str, int character)
 	if (*str == character)
 		return ((char *)str);
 	return (NULL);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	len;
-
-	if (!dst || !src)
-		return (0);
-	i = -1;
-	len = ft_strlen(src);
-	if (!size)
-		return (len);
-	while (++i < size - 1 && src[i])
-		dst[i] = src[i];
-	dst[i] = 0;
-	return (len);
 }
 
 char	*ft_line_cat(char **s1, char *s2)

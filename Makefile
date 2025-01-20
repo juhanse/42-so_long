@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/01/20 16:35:26 by juhanse          ###   ########.fr        #
+#    Updated: 2025/01/20 17:04:30 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS = -Wall -Werror -Wextra
 
 PATH_SRCS = src/
 
-UTILS = utils/ft_strlen.c utils/ft_split.c utils/ft_strlcpy
+UTILS = utils/ft_strlen.c utils/ft_split.c utils/ft_strlcpy.c
 GNL = gnl/get_next_line_utils.c gnl/get_next_line.c
-SRCS = main.c utils.c parsing.c map.c $(UTILS) $(GNL)
+SRCS = main.c map.c parsing.c $(UTILS) $(GNL)
 HEADERS = so_long.h
 
 SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))

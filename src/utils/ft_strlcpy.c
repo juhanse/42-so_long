@@ -6,15 +6,15 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:32:46 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 16:33:00 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:02:05 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	ft_strlcpy(char *dst, char *src, int dstsize)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!dst || !src)
