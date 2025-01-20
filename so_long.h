@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 17:05:55 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:28:16 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*get_next_line(int fd);
 
 // SO_LONG
 void	ft_init_struct(t_map *map, char *path);
-int		ft_parse_map(char *map);
+int		ft_parse_map(t_map *map);
 void	ft_free_map(t_map *map);
 void	ft_read_map(t_map *map);
 void	ft_allocate_map(t_map *map);
