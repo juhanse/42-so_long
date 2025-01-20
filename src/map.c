@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 17:01:14 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:14:11 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_read_map(t_map *map)
 		return ;
 	}
 	line = get_next_line(fd);
+	if (line)
+		map->col = ft_strlen(line) - 1;
 	while (line)
 	{
 		map->line++;
@@ -75,7 +77,7 @@ void	ft_fill_map(t_map *map)
 	int		fd;
 	char	*line;
 
-	i = -1;
+	i = 0;
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
 	{
