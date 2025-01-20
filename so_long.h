@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 13:42:40 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 15:23:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,26 @@
 # define IMG_PXL 64
 # define WND_NAME "so_long"
 
-typedef struct	s_player
+typedef struct s_player
 {
 	int	x;
 	int	y;
-} t_player;
+}	t_player;
 
-typedef struct	s_end
+typedef struct s_end
 {
 	int	x;
 	int	y;
-} t_end;
+}	t_end;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char		*filename;
 	char		**data;
-	int			y;
+	int			count_line;
+	int			count_col;
 	int			x;
+	int			y;
 	int			c;
 	int			p;
 	int			e;
@@ -67,7 +69,7 @@ typedef struct	s_map
 	void		*wnd;
 	t_player	player;
 	t_end		end;
-} t_map;
+}	t_map;
 
 // GET_NEXT_LINE
 size_t	ft_strlen(const char *s);
