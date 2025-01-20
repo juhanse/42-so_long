@@ -6,20 +6,21 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 16:12:59 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 16:18:24 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	ft_free_map(char **map)
+void	ft_free_map(t_map *map)
 {
 	int	i;
 
 	i = -1;
-	while (map[++i])
-		free(map[i]);
-	free(map);
+	while (map->map[++i])
+		free(map->map[i]);
+	free(map->map);
+	map->map = NULL;
 }
 
 void	ft_read_map(t_map *map)
@@ -49,6 +50,4 @@ t_map	ft_init_map(char *map_path)
 	char	**map;
 
 	i = 0;
-	map = malloc()
-	map->data = ft_split(get_next_line(map_path), "\n");
 }
