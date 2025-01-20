@@ -1,0 +1,30 @@
+name: Vérification de la norme 42
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-norme:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Cloner le dépôt
+      - name: Cloner le dépôt
+        uses: actions/checkout@v3
+
+      # 2. Installer les dépendances nécessaires
+      - name: Installer la norme 42
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git clang-format
+          git clone https://github.com/42School/norminette.git
+          cd norminette && sudo python3 setup.py install
+
+      # 3. Lancer la vérification de la norme
+      - name: Vérifier la norme
+        run: norminette
