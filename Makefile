@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/01/20 12:48:47 by juhanse          ###   ########.fr        #
+#    Updated: 2025/01/20 13:17:27 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS = -Wall -Werror -Wextra
 
 PATH_SRCS = src/
 
-SRCS = main.c parsing.c
+GNL = gnl/get_next_line_utils.c gnl/get_next_line.c
+SRCS = main.c parsing.c $(GNL)
 HEADERS = so_long.h
 
 SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))

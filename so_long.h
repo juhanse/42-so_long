@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 12:48:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 13:19:47 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
+# include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 # define X 1000
 # define Y 600
@@ -62,6 +68,13 @@ typedef struct	s_map
 	t_end		end;
 } t_map;
 
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *str, int character);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_line_cat(char **s1, char *s2);
+
+char	*get_next_line(int fd);
 void	ft_initialize(t_map *map, char **av);
 int		ft_parse_map(char *map);
 
