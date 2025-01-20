@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 22:14:03 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:33:23 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,6 @@ static int	ft_count_items(t_map *map, char type)
 		}
 	}
 	return (count);
-}
-
-static int	ft_is_rectangle(t_map *map)
-{
-	int	i;
-	int	len;
-
-	if (!map || !map->map || !map->map[0])
-        return (0);
-	i = -1;
-	len = ft_strlen(map->map[0]);
-	while (map->map[++i])
-	{
-		if (ft_strlen(map->map[i]) != len)
-		{
-			printf("Map is not a rectangle\n");
-			return (0);
-		}
-	}
-	return (1);
 }
 
 static int	ft_check_char(t_map *map)
@@ -106,7 +86,7 @@ int	ft_parse_map(t_map *map)
 		printf("Map is empty\n");
 		return (0);
 	}
-	if (!ft_is_rectangle(map) || !ft_check_char(map) || !ft_check_walls(map))
+	if (!ft_check_char(map) || !ft_check_walls(map))
 	{
 		ft_free_map(map);
 		return (0);
