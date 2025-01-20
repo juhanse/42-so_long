@@ -5,3 +5,6 @@ so_long
 
 # MACOS
 .DS_Store
+
+# IDE
+.vscode
