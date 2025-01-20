@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 22:09:19 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:43:53 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ void	ft_read_map(t_map *map)
 		return ;
 	}
 	line = get_next_line(fd);
-	if (line)
-		map->col = ft_strlen(line) - 1;
+	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
 		map->line++;
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
 	close(fd);
 }
 
