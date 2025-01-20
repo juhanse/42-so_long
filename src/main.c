@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 16:59:26 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 17:17:59 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,24 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	map = NULL;
 	if (argc != 2)
 	{
 		printf("Invalid arguments\n");
 		return (0);
 	}
+	map = (t_map *)malloc(sizeof(t_map));
+    if (!map)
+    {
+        printf("Memory allocation failed\n");
+        return (0);
+    }
 	ft_init_struct(map, argv[1]);
 	ft_read_map(map);
 	ft_allocate_map(map);
 	ft_fill_map(map);
-	printf("%s\n", map->map[0]);
-	// if (!ft_parse_map(map->map))
-	// 	return (0);
+	if (!ft_parse_map(map))
+		return (0);
+	printf("Map is valid\n");
 // 	ft_initialize(&map, argv);
 // 	map.mlx = mlx_init();
 // 	map.wnd = mlx_new_window(map.mlx, map.x * IMG_PXL, map.y * IMG_PXL, WND_NAME);
