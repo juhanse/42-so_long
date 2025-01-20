@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 17:14:11 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:02:26 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_read_map(t_map *map)
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
 	{
-		write(1, "Error", 5);
+		printf("Missing map file\n");
 		return ;
 	}
 	line = get_next_line(fd);
@@ -54,17 +54,13 @@ void	ft_allocate_map(t_map *map)
 	i = -1;
 	map->map = (char **)malloc(sizeof(char *) * (map->line + 1));
 	if (!map->map)
-	{
-		write(1, "Error", 5);
 		return ;
-	}
 	while (++i < map->line)
 	{
 		map->map[i] = (char *)malloc(sizeof(char) * (map->col + 1));
 		if (!map->map[i])
 		{
 			ft_free_map(map);
-			write(1, "Error", 5);
 			return ;
 		}
 	}
@@ -81,7 +77,7 @@ void	ft_fill_map(t_map *map)
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
 	{
-		write(1, "Error", 5);
+		printf("Missing map file\n");
 		return ;
 	}
 	line = get_next_line(fd);
