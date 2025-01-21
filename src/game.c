@@ -6,18 +6,31 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 14:26:25 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:58:47 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
 
+void	load_img(t_map *map, int index, char *path)
+{
+	if (!path)
+		exit(EXIT_FAILURE);
+	map->assets[index].path = path;
+	map->assets[index].img = mlx_xpm_file_to_image(map->mlx, path, &map->assets[index].width, &map->assets[index].height);
+	if (!map->assets[index].img)
+	{
+		printf("Failed load image\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
 void	start_game(t_map *map)
 {
 	map->mlx = mlx_init();
-	map->wnd = mlx_new_window(map->mlx, 1200, 600, WND_NAME);
-	// mlx_hook(map->wnd, 17, 0, ft_close, &map);
- 	// mlx_key_hook(map->wnd, key_move, &map);
+	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
+	load_img(map, 1, "./assets/wall.xpm");
+	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, 1, 1);
 	mlx_loop(map->mlx);
 }
