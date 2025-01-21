@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 13:13:56 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:19:28 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_init_struct(t_map *map, char *path)
 		write(1, "Error", 5);
 	map->map_path = path;
 	map->map = NULL;
+	map->mlx = NULL;
+	map->wnd = NULL;
 	map->line = 0;
 	map->col = 0;
 	map->collects = 0;
@@ -47,10 +49,10 @@ int	main(int argc, char **argv)
 	ft_fill_map(map);
 	ft_parse_map(map);
 	printf("Map is valid\n");
-	// map->mlx = mlx_init();
- 	// map->wnd = mlx_new_window(map->mlx, map->player.x * IMG_PXL, map->player.y * IMG_PXL, WND_NAME);
+	map->mlx = mlx_init();
+ 	map->wnd = mlx_new_window(map->mlx, 1200, 600, WND_NAME);
 	// mlx_hook(map->wnd, 17, 0, ft_close, &map);
  	// mlx_key_hook(map->wnd, key_move, &map);
- 	// mlx_loop(map->mlx);
+ 	mlx_loop(map->mlx);
 	return (0);
 }
