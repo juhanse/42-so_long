@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 22:33:23 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:47:09 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,25 +78,24 @@ static int	ft_check_walls(t_map *map)
 	return (1);
 }
 
-int	ft_parse_map(t_map *map)
+void	ft_parse_map(t_map *map)
 {
 	if (!map || !map->map || !map->map[0])
 	{
 		ft_free_map(map);
 		printf("Map is empty\n");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	if (!ft_check_char(map) || !ft_check_walls(map))
 	{
 		ft_free_map(map);
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	if (ft_count_items(map, 'E') != 1 || ft_count_items(map, 'P') != 1 \
 	|| ft_count_items(map, 'C') < 1)
 	{
 		ft_free_map(map);
 		printf("Invalid number of items\n");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
-	return (1);
 }
