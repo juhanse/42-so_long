@@ -6,16 +6,21 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 13:24:03 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:04:54 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include "../mlx/mlx.h"
 
 void	ft_free_map(t_map *map)
 {
 	int	i;
 
+	i = -1;
+	while (++i < 3)
+        if (map->assets[i].img)
+            mlx_destroy_image(map->mlx, map->assets[i].img);
 	i = -1;
 	while (map->map[++i])
 		free(map->map[i]);

@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 14:58:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:05:16 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	start_game(t_map *map)
 	map->mlx = mlx_init();
 	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
 	load_img(map, 1, "./assets/wall.xpm");
-	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, 1, 1);
+	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, 0, 0);
 	mlx_loop(map->mlx);
 }
