@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 22:43:53 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:46:00 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ void	ft_free_map(t_map *map)
 		free(map->map[i]);
 	free(map->map);
 	map->map = NULL;
+}
+
+void	ft_print_map(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while (map->map[++i])
+		printf("%s", map->map[i]);
 }
 
 void	ft_read_map(t_map *map)
@@ -38,6 +47,12 @@ void	ft_read_map(t_map *map)
 	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
+		if (ft_strlen(line) - 1 != map->col)
+		{
+			printf("Map is not a rectangle\n");
+			free(line);
+			exit(EXIT_FAILURE);
+		}
 		map->line++;
 		free(line);
 		line = get_next_line(fd);
