@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 12:47:30 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:00:37 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ typedef struct s_map
 }	t_map;
 
 // UTILS
-char	**ft_split(char const *str, char c);
 int		ft_strlen(char *s);
 int		ft_strlcpy(char *dst, char *src, int dstsize);
 
