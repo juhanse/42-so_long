@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 12:47:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:54:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	map = (t_map *)malloc(sizeof(t_map));
-    if (!map)
-    {
-        printf("Memory allocation failed\n");
-        return (0);
-    }
+	if (!map)
+		return (0);
 	ft_init_struct(map, argv[1]);
 	ft_read_map(map);
 	ft_allocate_map(map);
