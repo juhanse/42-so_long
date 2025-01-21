@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 12:47:09 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:56:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ static int	ft_check_char(t_map *map)
 		j = -1;
 		while (map->map[i][++j])
 		{
-			if (map->map[i][j] != '0' && map->map[i][j] != '1' && map->map[i][j] != 'C' \
-			&& map->map[i][j] != 'P' && map->map[i][j] != 'E')
+			if (map->map[i][j] != '0' && map->map[i][j] != '1' && \
+			map->map[i][j] != 'C' && map->map[i][j] != 'P' && \
+			map->map[i][j] != 'E')
 			{
 				printf("Invalid characters\n");
 				return (0);
