@@ -6,12 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 14:22:04 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:23:55 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include "../mlx/mlx.h"
 
 void	ft_init_struct(t_map *map, char *path)
 {

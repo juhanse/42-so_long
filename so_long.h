@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 14:23:21 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:25:53 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ typedef struct s_player
 	int	x;
 	int	y;
 }	t_player;
+
+typedef struct s_asset
+{
+	char	*path;
+	int		width;
+	int		height;
+}	t_asset;
 
 typedef struct s_map
 {
