@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 12:46:00 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:21:59 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,22 @@ void	ft_free_map(t_map *map)
 	map->map = NULL;
 }
 
-void	ft_print_map(t_map *map)
+void	ft_check_path(t_map *map)
 {
-	int	i;
+	int	len;
 
-	i = -1;
-	while (map->map[++i])
-		printf("%s", map->map[i]);
+	len = ft_strlen(map->map_path);
+	if (map->map_path[len - 1] != 'r' || map->map_path[len - 2] != 'e' || \
+	map->map_path[len - 3] != 'b' || map->map_path[len - 4] != '.')
+	{
+		printf("Bad path map\n");
+		exit(EXIT_FAILURE);
+	}
+	if (!ft_isalnum(map->map_path[len - 5]))
+	{
+		printf("Bad path map\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	ft_read_map(t_map *map)

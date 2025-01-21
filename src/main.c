@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 12:54:14 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:13:56 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ int	main(int argc, char **argv)
 	if (!map)
 		return (0);
 	ft_init_struct(map, argv[1]);
+	ft_check_path(map);
 	ft_read_map(map);
 	ft_allocate_map(map);
 	ft_fill_map(map);
 	ft_parse_map(map);
 	printf("Map is valid\n");
-// 	ft_initialize(&map, argv);
-// 	map.mlx = mlx_init();
-// 	map.wnd = mlx_new_window(map.mlx, map.x * IMG_PXL, map.y * IMG_PXL, WND_NAME);
-// /* 	mlx_hook(map.wnd, 17, 0, ft_close, &map);
-// 	mlx_key_hook(map.wnd, key_move, &map); */
-// 	mlx_loop(map.mlx);
+	// map->mlx = mlx_init();
+ 	// map->wnd = mlx_new_window(map->mlx, map->player.x * IMG_PXL, map->player.y * IMG_PXL, WND_NAME);
+	// mlx_hook(map->wnd, 17, 0, ft_close, &map);
+ 	// mlx_key_hook(map->wnd, key_move, &map);
+ 	// mlx_loop(map->mlx);
 	return (0);
 }
