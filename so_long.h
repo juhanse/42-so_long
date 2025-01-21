@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 14:25:53 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:50:03 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_player
 
 typedef struct s_asset
 {
+	void	*img;
 	char	*path;
 	int		width;
 	int		height;
@@ -63,6 +64,7 @@ typedef struct s_map
 	void		*mlx;
 	void		*wnd;
 	t_player	player;
+	t_asset		assets[3];
 }	t_map;
 
 // UTILS
