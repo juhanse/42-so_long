@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 13:21:02 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:23:21 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*ft_strchr(const char *str, int character);
 char	*ft_line_cat(char **s1, char *s2);
 char	*get_next_line(int fd);
 
-// SO_LONG
+// SO_LONG - MAP
 void	ft_init_struct(t_map *map, char *path);
 void	ft_check_path(t_map *map);
 void	ft_parse_map(t_map *map);
@@ -77,5 +77,7 @@ void	ft_free_map(t_map *map);
 void	ft_read_map(t_map *map);
 void	ft_allocate_map(t_map *map);
 void	ft_fill_map(t_map *map);
+// SO_LONG - GAME
+void	start_game(t_map *map);
 
 #endif

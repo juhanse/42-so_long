@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 14:19:28 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 14:22:04 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,6 @@ int	main(int argc, char **argv)
 	ft_fill_map(map);
 	ft_parse_map(map);
 	printf("Map is valid\n");
-	map->mlx = mlx_init();
- 	map->wnd = mlx_new_window(map->mlx, 1200, 600, WND_NAME);
-	// mlx_hook(map->wnd, 17, 0, ft_close, &map);
- 	// mlx_key_hook(map->wnd, key_move, &map);
- 	mlx_loop(map->mlx);
+	start_game(map);
 	return (0);
 }
