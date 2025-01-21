@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 17:17:59 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/21 12:47:38 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	main(int argc, char **argv)
 	ft_read_map(map);
 	ft_allocate_map(map);
 	ft_fill_map(map);
-	if (!ft_parse_map(map))
-		return (0);
+	ft_parse_map(map);
 	printf("Map is valid\n");
 // 	ft_initialize(&map, argv);
 // 	map.mlx = mlx_init();
