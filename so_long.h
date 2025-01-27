@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/27 12:42:40 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/27 14:52:44 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_map
 	void		*mlx;
 	void		*wnd;
 	t_player	player;
-	t_asset		assets[3];
+	t_asset		assets[4];
 }	t_map;
 
 // UTILS
