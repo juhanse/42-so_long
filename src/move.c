@@ -6,45 +6,53 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 12:52:49 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:50:09 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
 
-void	ft_player_move(t_map *map, char pos, int direction)
+void	ft_player_move(t_map *map, char axe, int direction)
 {
-	if (pos == 'y' && direction == UP)
-		mlx_put_image_to_window(map->mlx, map->wnd, map->assets->up, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
-	if (pos == 'x' && direction == LEFT)
-		mlx_put_image_to_window(map->mlx, map->wnd, map->assets->left, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
-	if (pos == 'y' && direction == DOWN)
-		mlx_put_image_to_window(map->mlx, map->wnd, map->assets->down, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
-	if (pos == 'x' && direction == RIGHT)
-		mlx_put_image_to_window(map->mlx, map->wnd, map->assets->right, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
+	if (axe == 'y' && (direction == W || direction == UP))
+		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].up, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
+	if (axe == 'y' && (direction == S || direction == DOWN))
+		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].down, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
+	if (axe == 'x' && (direction == A || direction == LEFT))
+		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].left, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
+	if (axe == 'x' && (direction == D || direction == RIGHT))
+		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].right, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
 }
 
-void	ft_move(t_map *map, char pos, int dir)
+void	ft_move(t_map *map, char axe, int dir)
 {
-	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
-	if (pos == 'y' && map->map[map->player.y + 1 * dir][map->player.x] != '1' && map->map[map->player.y + 1 * dir][map->player.x] != 'E')
-	{
-		printf("Move\n");
+	if (axe == 'y' && map->map[map->player.y + 1 * dir][map->player.x] != '1' && map->map[map->player.y + 1 * dir][map->player.x] != 'E')
 		map->player.y = map->player.y + 1 * dir;
-	}
-	else if (pos == 'x' && map->map[map->player.y][map->player.x + 1 * dir] != '1' && map->map[map->player.y][map->player.x + 1 * dir] != 'E')
-	{
-		printf("Move\n");
+	else if (axe == 'x' && map->map[map->player.y][map->player.x + 1 * dir] != '1' && map->map[map->player.y][map->player.x + 1 * dir] != 'E')
 		map->player.x = map->player.x + 1 * dir;
-	}
-	// else if (pos == 'y' && map->map[map->player.y + 1 * dir][map->player.x] == 'E' && map->collected != map->map->diamonds)
-	// 	printf("Collect all collectibles before leaving\n");
-	// else if (pos == 'x' && map->map[map->player.y][map->player.x + 1 * dir] == 'E' && map->collected != map->map->diamonds)
-	// 	printf("Collect all collectibles before leaving\n");
-	ft_player_move(map, pos, dir);
-	// if (map->map[map->player.y][map->player.x] == 'C')
-	// 	ft_collect(map, pos, dir);
+	
+	ft_player_move(map, axe, dir);
 	mlx_do_sync(map->mlx);
-	printf("You moved %d times.\n", ++map->move_count);
+	printf("You moved %d\n", ++map->move_count);
+}
+
+int	key_hook(int keycode, t_map *map)
+{
+	printf("MOVE\n");
+	if (keycode == W || keycode == UP)
+		ft_move(map, 'y', UP);
+	else if (keycode == S || keycode == DOWN)
+		ft_move(map, 'y', DOWN);
+	else if (keycode == A || keycode == LEFT)
+		ft_move(map, 'x', LEFT);
+	else if (keycode == D || keycode == RIGHT)
+		ft_move(map, 'x', RIGHT);
+	else if (keycode == ESC)
+	{
+		printf("ESC\n");
+		ft_free_map(map);
+		exit(EXIT_FAILURE);
+	}
+	return (0);
 }
