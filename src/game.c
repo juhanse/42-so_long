@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 14:49:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:03:48 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ void	load_img(t_map *map, char *path, int index)
 	map->assets[index].path = path;
 	map->assets[index].width = IMG_PXL;
 	map->assets[index].height = IMG_PXL;
-	map->assets[index].up = 0;
-	map->assets[index].down = 0;
-	map->assets[index].right = 0;
-	map->assets[index].left = 0;
 	map->assets[index].img = mlx_xpm_file_to_image(map->mlx, path, &map->assets[index].width, &map->assets[index].height);
 	if (!map->assets[index].img)
 	{
@@ -49,7 +45,11 @@ void	fill_game(t_map *map)
 			if (map->map[i][j] == '1')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'P')
+			{
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, j * IMG_PXL, i * IMG_PXL);
+				map->player.x = j * IMG_PXL;
+				map->player.y = i * IMG_PXL;
+			}
 			else if (map->map[i][j] == 'C')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'E')
@@ -67,6 +67,7 @@ void	start_game(t_map *map)
 	load_img(map, "./assets/collect.xpm", 2);
 	load_img(map, "./assets/exit.xpm", 3);
 	fill_game(map);
+	printf("\nPLAYER:\nx: %d\ny: %d\n", map->player.x, map->player.y);
 	mlx_key_hook(map->wnd, key_hook, &map);
 	mlx_loop(map->mlx);
 }

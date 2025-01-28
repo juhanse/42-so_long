@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 14:51:58 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:56:28 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ typedef struct s_asset
 	char	*path;
 	int		width;
 	int		height;
-	void	*up;
-	void	*down;
-	void	*left;
-	void	*right;
 }	t_asset;
 
 typedef struct s_map
