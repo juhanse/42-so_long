@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 17:44:56 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:57:55 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_allocate_map(t_map *map);
 void	ft_fill_map(t_map *map);
 // SO_LONG - MOVE
 int		key_hook(int keycode, t_map *map);
-void	ft_move(t_map *map, char axe, int direction);
+void	ft_move(t_map *map, int axe, int pos);
 // SO_LONG - GAME
 void	load_img(t_map *map, char *path, int index);
 void	fill_game(t_map *map);

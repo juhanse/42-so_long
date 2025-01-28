@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 17:44:48 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:57:19 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	load_img(t_map *map, char *path, int index)
 		exit(EXIT_FAILURE);
 	}
 }
- 
+
 void	fill_game(t_map *map)
 {
 	int	i;
