@@ -6,14 +6,14 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 14:50:09 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:51:45 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
 
-void	ft_player_move(t_map *map, char axe, int direction)
+void	ft_move(t_map *map, char axe, int direction)
 {
 	if (axe == 'y' && (direction == W || direction == UP))
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].up, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
@@ -23,16 +23,6 @@ void	ft_player_move(t_map *map, char axe, int direction)
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].left, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
 	if (axe == 'x' && (direction == D || direction == RIGHT))
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].right, (map->player.x * IMG_PXL), (map->player.y * IMG_PXL));
-}
-
-void	ft_move(t_map *map, char axe, int dir)
-{
-	if (axe == 'y' && map->map[map->player.y + 1 * dir][map->player.x] != '1' && map->map[map->player.y + 1 * dir][map->player.x] != 'E')
-		map->player.y = map->player.y + 1 * dir;
-	else if (axe == 'x' && map->map[map->player.y][map->player.x + 1 * dir] != '1' && map->map[map->player.y][map->player.x + 1 * dir] != 'E')
-		map->player.x = map->player.x + 1 * dir;
-	
-	ft_player_move(map, axe, dir);
 	mlx_do_sync(map->mlx);
 	printf("You moved %d\n", ++map->move_count);
 }
