@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 16:09:54 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:13:28 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,25 @@
 void	ft_move(t_map *map, char axe, int direction)
 {
 	if (axe == 'y' && (direction == W || direction == UP))
+	{
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, map->player.x * IMG_PXL, (map->player.y + 1) * IMG_PXL);
+		map->player.y = (map->player.y + 1) * IMG_PXL;
+	}
 	if (axe == 'y' && (direction == S || direction == DOWN))
+	{
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, map->player.x * IMG_PXL, (map->player.y - 1) * IMG_PXL);
+		map->player.y = (map->player.y - 1) * IMG_PXL;
+	}
 	if (axe == 'x' && (direction == D || direction == RIGHT))
+	{
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, (map->player.x + 1) * IMG_PXL, map->player.y * IMG_PXL);
+		map->player.x = (map->player.x + 1) * IMG_PXL;
+	}
 	if (axe == 'x' && (direction == A || direction == LEFT))
+	{
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, (map->player.x - 1) * IMG_PXL, map->player.y * IMG_PXL);
+		map->player.x = (map->player.x - 1) * IMG_PXL;
+	}
 	mlx_do_sync(map->mlx);
 	printf("You moved %d\n", ++map->move_count);
 }
