@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 14:23:55 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 12:44:36 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_init_struct(t_map *map, char *path)
 	map->collects = 0;
 	map->exit = 0;
 	map->player_start = 0;
+	map->move_count = 0;
 	map->player.x = 0;
 	map->player.y = 0;
 }

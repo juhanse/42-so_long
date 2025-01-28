@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 15:08:39 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 13:09:55 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_free_map(t_map *map)
 		free(map->map[i]);
 	free(map->map);
 	map->map = NULL;
+	mlx_destroy_window(map->mlx, map->wnd);
 }
 
 void	ft_check_path(t_map *map)

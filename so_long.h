@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/27 14:52:44 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 13:03:21 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@
 
 # define X 1730
 # define Y 550
-# define UP 126
-# define DOWN 125
-# define RIGHT 124
-# define LEFT 123
-# define W 13
-# define S 1
-# define D 2
-# define A 0
-# define ESC 53
+# define UP 65362
+# define DOWN 65364
+# define RIGHT 65363
+# define LEFT 65361
+# define W 119
+# define S 115
+# define D 100
+# define A 97
+# define ESC 65307
 # define IMG_PXL 64
 # define WND_NAME "so_long"
 
@@ -50,6 +50,10 @@ typedef struct s_asset
 	char	*path;
 	int		width;
 	int		height;
+	void	*up;
+	void	*down;
+	void	*left;
+	void	*right;
 }	t_asset;
 
 typedef struct s_map
@@ -61,6 +65,7 @@ typedef struct s_map
 	int			collects;
 	int			exit;
 	int			player_start;
+	int			move_count;
 	void		*mlx;
 	void		*wnd;
 	t_player	player;
@@ -86,6 +91,9 @@ void	ft_free_map(t_map *map);
 void	ft_read_map(t_map *map);
 void	ft_allocate_map(t_map *map);
 void	ft_fill_map(t_map *map);
+// SO_LONG - MOVE
+void	ft_player_move(t_map *map, char pos, int direction);
+void	ft_move(t_map *map, char pos, int dir);
 // SO_LONG - GAME
 void	load_img(t_map *map, char *path, int index);
 void	fill_game(t_map *map);

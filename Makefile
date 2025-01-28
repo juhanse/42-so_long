@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/01/21 14:23:07 by juhanse          ###   ########.fr        #
+#    Updated: 2025/01/28 12:22:51 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ PATH_SRCS = src/
 
 UTILS = utils/ft_isalnum.c utils/ft_strlen.c utils/ft_strlcpy.c
 GNL = gnl/get_next_line_utils.c gnl/get_next_line.c
-SRCS = main.c map.c parsing.c game.c $(UTILS) $(GNL)
+SRCS = main.c map.c parsing.c game.c move.c $(UTILS) $(GNL)
 HEADERS = so_long.h
 
 SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
