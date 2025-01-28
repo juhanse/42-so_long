@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 13:03:21 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 13:12:03 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define S 115
 # define D 100
 # define A 97
+# define SPACE 32
 # define ESC 65307
 # define IMG_PXL 64
 # define WND_NAME "so_long"
