@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 16:39:33 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:49:40 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ void	ft_init_struct(t_map *map, char *path)
 	map->move_count = 0;
 	map->player.x = 0;
 	map->player.y = 0;
+}
+
+void	ft_hooks(t_map *map)
+{
+	mlx_hook(map->wnd, 17, 0, &quit_game, map);
+	mlx_key_hook(map->wnd, key_hook, &map);
 }
 
 int	main(int argc, char **argv)

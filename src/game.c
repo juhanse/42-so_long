@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 16:43:20 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:44:48 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	load_img(t_map *map, char *path, int index)
 		exit(EXIT_FAILURE);
 	}
 }
-
+ 
 void	fill_game(t_map *map)
 {
 	int	i;
@@ -44,13 +44,8 @@ void	fill_game(t_map *map)
 		{
 			if (map->map[i][j] == '1')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, j * IMG_PXL, i * IMG_PXL);
-			else if (map->map[i][j] == 'P' && map->player_started == 0)
-			{
+			else if (map->map[i][j] == 'P')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, j * IMG_PXL, i * IMG_PXL);
-				map->player.x = j * IMG_PXL;
-				map->player.y = i * IMG_PXL;
-				map->player_started = 1;
-			}
 			else if (map->map[i][j] == 'C')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'E')
@@ -59,12 +54,24 @@ void	fill_game(t_map *map)
 	}
 }
 
-void	quit_game(t_map *map)
+void	refresh_game(t_map *map)
 {
-	ft_free_map(map);
 	mlx_destroy_window(map->mlx, map->wnd);
+	fill_game(map);
+}
+
+int	quit_game(t_map *map)
+{
+	mlx_destroy_image(map->mlx, map->assets[0].img);
+	mlx_destroy_image(map->mlx, map->assets[1].img);
+	mlx_destroy_image(map->mlx, map->assets[2].img);
+	mlx_destroy_image(map->mlx, map->assets[3].img);
+	mlx_destroy_display(map->mlx);
+	free(map->mlx);
+	ft_free_map(map);
 	printf("Leave game\n");
-	exit(EXIT_FAILURE);
+	exit(0);
+	return (0);
 }
 
 void	start_game(t_map *map)
