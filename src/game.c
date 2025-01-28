@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 16:03:48 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:10:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ void	fill_game(t_map *map)
 		{
 			if (map->map[i][j] == '1')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, j * IMG_PXL, i * IMG_PXL);
-			else if (map->map[i][j] == 'P')
+			else if (map->map[i][j] == 'P' && map->player_started == 0)
 			{
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, j * IMG_PXL, i * IMG_PXL);
 				map->player.x = j * IMG_PXL;
 				map->player.y = i * IMG_PXL;
+				map->player_started = 1;
 			}
 			else if (map->map[i][j] == 'C')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, j * IMG_PXL, i * IMG_PXL);
