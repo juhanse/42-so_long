@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 16:10:20 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:43:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,19 @@ void	fill_game(t_map *map)
 	}
 }
 
+void	quit_game(t_map *map)
+{
+	ft_free_map(map);
+	mlx_destroy_window(map->mlx, map->wnd);
+	printf("Leave game\n");
+	exit(EXIT_FAILURE);
+}
+
 void	start_game(t_map *map)
 {
-	map->mlx = mlx_init();
-	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
 	load_img(map, "./assets/wall2.xpm", 0);
 	load_img(map, "./assets/player.xpm", 1);
 	load_img(map, "./assets/collect.xpm", 2);
 	load_img(map, "./assets/exit.xpm", 3);
 	fill_game(map);
-	printf("\nPLAYER:\nx: %d\ny: %d\n", map->player.x, map->player.y);
-	mlx_key_hook(map->wnd, key_hook, &map);
-	mlx_loop(map->mlx);
 }

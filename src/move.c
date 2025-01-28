@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 16:13:28 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:43:08 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@ void	ft_move(t_map *map, char axe, int direction)
 {
 	if (axe == 'y' && (direction == W || direction == UP))
 	{
+		printf("3\n");
+		if (!map->mlx || !map->wnd)
+			printf("BAD\n");
+		printf("4\n");
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, map->player.x * IMG_PXL, (map->player.y + 1) * IMG_PXL);
+		printf("5\n");
 		map->player.y = (map->player.y + 1) * IMG_PXL;
+		printf("6\n");
 	}
 	if (axe == 'y' && (direction == S || direction == DOWN))
 	{
@@ -35,15 +41,21 @@ void	ft_move(t_map *map, char axe, int direction)
 		mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, (map->player.x - 1) * IMG_PXL, map->player.y * IMG_PXL);
 		map->player.x = (map->player.x - 1) * IMG_PXL;
 	}
+	printf("7\n");
 	mlx_do_sync(map->mlx);
+	printf("8\n");
 	printf("You moved %d\n", ++map->move_count);
+	printf("9\n");
 }
 
 int	key_hook(int keycode, t_map *map)
 {
-	printf("MOVE\n");
+	printf("1\n");
 	if (keycode == W || keycode == UP)
+	{
+		printf("2\n");
 		ft_move(map, 'y', UP);
+	}
 	else if (keycode == S || keycode == DOWN)
 		ft_move(map, 'y', DOWN);
 	else if (keycode == A || keycode == LEFT)
@@ -53,8 +65,7 @@ int	key_hook(int keycode, t_map *map)
 	else if (keycode == ESC)
 	{
 		printf("ESC\n");
-		ft_free_map(map);
-		exit(EXIT_FAILURE);
+		quit_game(map);
 	}
 	return (0);
 }

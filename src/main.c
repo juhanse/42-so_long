@@ -6,11 +6,12 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 16:10:26 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:39:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+#include "../mlx/mlx.h"
 
 void	ft_init_struct(t_map *map, char *path)
 {
@@ -49,6 +50,11 @@ int	main(int argc, char **argv)
 	ft_fill_map(map);
 	ft_parse_map(map);
 	printf("Map is valid\n");
+	map->mlx = mlx_init();
+	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
 	start_game(map);
+	mlx_key_hook(map->wnd, key_hook, &map);
+	printf("\nPLAYER:\nx: %d\ny: %d\n", map->player.x, map->player.y);
+	mlx_loop(map->mlx);
 	return (0);
 }
