@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 17:57:55 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/28 18:03:34 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	ft_move(t_map *map, int axe, int pos);
 void	load_img(t_map *map, char *path, int index);
 void	fill_game(t_map *map);
 void	start_game(t_map *map);
+void	refresh_game(t_map *map);
 int		quit_game(t_map *map);
 
 #endif
