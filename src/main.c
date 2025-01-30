@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 16:30:35 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 23:05:21 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ int	main(int argc, char **argv)
 		printf("Invalid arguments\n");
 		return (0);
 	}
-	map = (t_map *)malloc(sizeof(t_map));
-	if (!map)
-		return (0);
 	ft_init_map(map, argv[1]);
 	map->mlx = mlx_init();
 	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
