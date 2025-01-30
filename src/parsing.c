@@ -6,13 +6,13 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 11:52:22 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:43:46 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static int	ft_count_items(t_map *map, char type)
+int	ft_count_items(t_map *map, char type)
 {
 	int	i;
 	int	j;
@@ -120,5 +120,6 @@ void	ft_parse_map(t_map *map)
 		printf("Invalid number of items\n");
 		exit(EXIT_FAILURE);
 	}
+	map->collects = ft_count_items(map, 'C');
 	ft_find_player(map);
 }
