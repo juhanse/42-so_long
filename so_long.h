@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 15:44:09 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:13:46 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	ft_free_map(t_map *map);
 void	ft_read_map(t_map *map);
 void	ft_allocate_map(t_map *map);
 void	ft_fill_map(t_map *map);
+int		backtracking(t_map *map);
 // SO_LONG - GAME
 void	ft_hooks(t_map *map);
 void	load_img(t_map *map, char *path, int index);

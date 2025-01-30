@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 14:57:20 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:15:23 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	ft_init_map(t_map *map, char *map_path)
 	ft_allocate_map(map);
 	ft_fill_map(map);
 	ft_parse_map(map);
+	if (!backtracking(map))
+	{
+		printf("BACKTRACKING - Invalid map\n");
+		exit(EXIT_FAILURE);
+	}
 	printf("Map is valid\n");
 }
 
