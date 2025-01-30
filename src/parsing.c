@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/21 12:56:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 11:52:22 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,27 @@ static int	ft_check_walls(t_map *map)
 	return (1);
 }
 
+static void	ft_find_player(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->map[++i])
+	{
+		j = -1;
+		while (map->map[i][++j])
+		{
+			if (map->map[i][j] == 'P')
+			{
+				map->player.x = j;
+				map->player.y = i;
+				return ;
+			}
+		}
+	}
+}
+
 void	ft_parse_map(t_map *map)
 {
 	if (!map || !map->map || !map->map[0])
@@ -99,4 +120,5 @@ void	ft_parse_map(t_map *map)
 		printf("Invalid number of items\n");
 		exit(EXIT_FAILURE);
 	}
+	ft_find_player(map);
 }
