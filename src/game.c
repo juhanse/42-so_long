@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 17:57:19 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 11:42:31 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ void	fill_game(t_map *map)
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[3].img, j * IMG_PXL, i * IMG_PXL);
 		}
 	}
-}
-
-void	refresh_game(t_map *map)
-{
-	mlx_destroy_window(map->mlx, map->wnd);
-	fill_game(map);
 }
 
 int	quit_game(t_map *map)
