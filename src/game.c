@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 12:21:39 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 14:58:40 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ void	fill_game(t_map *map)
 		{
 			if (map->map[i][j] == '1')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, j * IMG_PXL, i * IMG_PXL);
+			else if (map->map[i][j] == 'P')
+				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'C')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'E')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[3].img, j * IMG_PXL, i * IMG_PXL);
 		}
 	}
-	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, map->player.x * IMG_PXL, map->player.y * IMG_PXL);
 }
 
 int	quit_game(t_map *map)
