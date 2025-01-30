@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 15:11:51 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:08:43 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,20 @@ int	quit_game(t_map *map)
 	mlx_destroy_image(map->mlx, map->assets[1].img);
 	mlx_destroy_image(map->mlx, map->assets[2].img);
 	mlx_destroy_image(map->mlx, map->assets[3].img);
+	mlx_destroy_window(map->mlx, map->wnd);
 	mlx_destroy_display(map->mlx);
 	free(map->mlx);
 	ft_free_map(map);
 	printf("Leave game\n");
 	exit(0);
 	return (0);
+}
+
+void	finish_game(t_map *map)
+{
+	mlx_string_put(map->mlx, map->wnd, 10, 10, 0x00FFFFFF, "You won!");
+	printf("You won!\n");
+	quit_game(map);
 }
 
 void	start_game(t_map *map)
