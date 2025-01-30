@@ -6,29 +6,28 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 18:01:27 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:00:49 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
 
-void	ft_init_struct(t_map *map, char *path)
+void	ft_init_map(t_map *map, char *map_path)
 {
-	if (!path)
-		write(1, "Error", 5);
-	map->map_path = path;
-	map->map = NULL;
-	map->mlx = NULL;
-	map->wnd = NULL;
-	map->line = 0;
-	map->col = 0;
-	map->collects = 0;
-	map->exit = 0;
-	map->player_started = 0;
-	map->move_count = 0;
-	map->player.x = 0;
-	map->player.y = 0;
+	if (!map_path)
+	{
+		printf("Invalid map file\n");
+		exit(EXIT_FAILURE);
+	}
+	*map = (t_map){0};
+	map->map_path = ft_atoi(map_path);
+	ft_check_path(map);
+	ft_read_map(map);
+	ft_allocate_map(map);
+	ft_fill_map(map);
+	ft_parse_map(map);
+	printf("Map is valid\n");
 }
 
 void	ft_hooks(t_map *map)
@@ -49,18 +48,12 @@ int	main(int argc, char **argv)
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
 		return (0);
-	ft_init_struct(map, argv[1]);
-	ft_check_path(map);
-	ft_read_map(map);
-	ft_allocate_map(map);
-	ft_fill_map(map);
-	ft_parse_map(map);
-	printf("Map is valid\n");
+	ft_init_map(map, argv[1]);
 	map->mlx = mlx_init();
 	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
 	start_game(map);
-	ft_hooks(map);
 	printf("\nPLAYER:\nx: %d\ny: %d\n", map->player.x, map->player.y);
+	ft_hooks(map);
 	mlx_loop(map->mlx);
 	return (0);
 }
