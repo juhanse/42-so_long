@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 11:58:24 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:03:01 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ typedef struct s_map
 int		ft_isalnum(int c);
 int		ft_strlen(char *s);
 int		ft_strlcpy(char *dst, char *src, int dstsize);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 // GET_NEXT_LINE
 char	*ft_strjoin(char *s1, char *s2);
