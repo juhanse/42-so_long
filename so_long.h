@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 12:22:48 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:44:09 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char	*get_next_line(int fd);
 // SO_LONG - MAP
 void	ft_init_map(t_map *map, char *map_path);
 void	ft_check_path(t_map *map);
+int		ft_count_items(t_map *map, char type);
 void	ft_parse_map(t_map *map);
 void	ft_free_map(t_map *map);
 void	ft_read_map(t_map *map);
@@ -95,8 +96,9 @@ void	fill_game(t_map *map);
 void	start_game(t_map *map);
 void	refresh_game(t_map *map);
 int		quit_game(t_map *map);
+void	finish_game(t_map *map);
 // SO_LONG - MOVE
 int		key_hook(int keycode, t_map *map);
-void	ft_move(t_map *map, int axe, int pos);
+int		ft_move(t_map *map, int axe, int pos);
 
 #endif
