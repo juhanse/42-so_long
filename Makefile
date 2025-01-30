@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/01/30 12:11:14 by juhanse          ###   ########.fr        #
+#    Updated: 2025/01/30 12:14:23 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 PATH_SRCS = src/
 
-UTILS = utils/ft_isalnum.c utils/ft_strlen.c utils/ft_strlcpy.c utils/ft_atoi.c
+UTILS = utils/ft_isalnum.c utils/ft_strlen.c utils/ft_strlcpy.c
 GNL = gnl/get_next_line_utils.c gnl/get_next_line.c
 SRCS = main.c map.c parsing.c game.c move.c $(UTILS) $(GNL)
 HEADERS = so_long.h
