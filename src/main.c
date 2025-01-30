@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 12:00:49 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:14:17 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_init_map(t_map *map, char *map_path)
 		exit(EXIT_FAILURE);
 	}
 	*map = (t_map){0};
-	map->map_path = ft_atoi(map_path);
+	map->map_path = map_path;
 	ft_check_path(map);
 	ft_read_map(map);
 	ft_allocate_map(map);
