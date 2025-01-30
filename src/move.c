@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/28 18:04:21 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 11:43:48 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,28 @@
 
 void	ft_move(t_map *map, int axe, int pos)
 {
-	int	new_x;
-	int	new_y;
-
-	new_x = map->player.x;
-	new_y = map->player.y;
 	if (axe == W)
-		new_y += pos;
+		map->player.y += pos;
 	if (axe == S)
-		new_y += pos;
+		map->player.y -= pos;
 	if (axe == D)
-		new_x += pos;
+		map->player.x += pos;
 	if (axe == A)
-		new_x += pos;
-	map->player.x = new_x;
-	map->player.y = new_y;
-	//refresh_game(map);
+		map->player.x -= pos;
+	refresh_game(map);
 	printf("You moved %d\n", ++map->move_count);
+}
+
+void	refresh_game(t_map *map)
+{
+	printf("\nPLAYER:\nx: %d\ny: %d\n", map->player.x, map->player.y);
+	if (!map->mlx || !map->wnd)
+		printf("Failed to refresh game\n");
+	printf("1\n");
+	mlx_clear_window(map->mlx, map->wnd);
+	printf("2\n");
+	fill_game(map);
+	printf("3\n");
 }
 
 int	key_hook(int keycode, t_map *map)
