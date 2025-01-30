@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 23:05:21 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 23:07:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ void	ft_init_map(t_map *map, char *map_path)
 
 int	main(int argc, char **argv)
 {
-	t_map	*map;
+	t_map	map;
 
 	if (argc != 2)
 	{
 		printf("Invalid arguments\n");
 		return (0);
 	}
-	ft_init_map(map, argv[1]);
-	map->mlx = mlx_init();
-	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
-    printf("\nMAIN: %d | %d\n", map->player.y, map->player.x);
-	start_game(map);
-	mlx_loop(map->mlx);
+	ft_init_map(&map, argv[1]);
+	map.mlx = mlx_init();
+	map.wnd = mlx_new_window(map.mlx, X, Y, WND_NAME);
+    printf("\nMAIN: %d | %d\n", map.player.y, map.player.x);
+	start_game(&map);
+	mlx_loop(map.mlx);
 	return (0);
 }
