@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 15:00:12 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:16:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,17 @@ void	refresh_game(t_map *map)
 {
 	if (!map->mlx || !map->wnd)
 		printf("Failed to refresh game\n");
-	mlx_clear_window(map->mlx, map->wnd);
+	if (!mlx_clear_window(map->mlx, map->wnd))
+		printf("Failed to clear window\n");
 	fill_game(map);
 }
 
 int	key_hook(int keycode, t_map *map)
 {
-	if (keycode == W || keycode == UP)
-		ft_move(map, W, 1);
+	if (keycode == W || keycode == UP || keycode == SPACE)
+		ft_move(map, W, -1);
 	else if (keycode == S || keycode == DOWN)
-		ft_move(map, S, -1);
+		ft_move(map, S, 1);
 	else if (keycode == A || keycode == LEFT)
 		ft_move(map, A, -1);
 	else if (keycode == D || keycode == RIGHT)
