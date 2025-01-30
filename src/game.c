@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 12:13:53 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:21:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	start_game(t_map *map)
 	load_img(map, "./assets/collect.xpm", 2);
 	load_img(map, "./assets/exit.xpm", 3);
 	fill_game(map);
+	ft_hooks(map);
 }

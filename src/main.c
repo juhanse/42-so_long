@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 12:14:17 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/30 12:21:53 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ void	ft_init_map(t_map *map, char *map_path)
 	printf("Map is valid\n");
 }
 
-void	ft_hooks(t_map *map)
-{
-	mlx_hook(map->wnd, 17, 0, &quit_game, map);
-	mlx_key_hook(map->wnd, key_hook, &map);
-}
-
 int	main(int argc, char **argv)
 {
 	t_map	*map;
@@ -52,8 +46,7 @@ int	main(int argc, char **argv)
 	map->mlx = mlx_init();
 	map->wnd = mlx_new_window(map->mlx, X, Y, WND_NAME);
 	start_game(map);
-	printf("\nPLAYER:\nx: %d\ny: %d\n", map->player.x, map->player.y);
-	ft_hooks(map);
+	printf("\n#1 | PLAYER:\nx: %d\ny: %d\n", map->player.x, map->player.y);
 	mlx_loop(map->mlx);
 	return (0);
 }
