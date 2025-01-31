@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 16:30:21 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/31 11:35:59 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_map
 {
 	char		*map_path;
 	char		**map;
+	char		**cpy;
 	int			line;
 	int			col;
 	int			collects;
