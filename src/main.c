@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 15:05:49 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/31 15:16:54 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_init_map(t_map *map, char *map_path)
 	ft_allocate_map(map);
 	ft_fill_map(map);
 	ft_parse_map(map);
-	is_map_reachable(map);
+	ft_map_reachable(map);
 	printf("Map is valid\n");
 }
 
