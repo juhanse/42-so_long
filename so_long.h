@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 12:03:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/31 13:15:25 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_map
 {
 	char		*map_path;
 	char		**map;
-	char		**cpy;
+	char		**copy;
 	int			line;
 	int			col;
 	int			collects;
@@ -88,7 +88,6 @@ void	ft_free_map(t_map *map);
 void	ft_read_map(t_map *map);
 void	ft_allocate_map(t_map *map);
 void	ft_fill_map(t_map *map);
-int	ft_is_valid_map(t_map *map);
 // SO_LONG - GAME
 void	ft_hooks(t_map *map);
 void	load_img(t_map *map, char *path, int index);
@@ -100,5 +99,8 @@ void	finish_game(t_map *map);
 // SO_LONG - MOVE
 int		key_hook(int keycode, t_map *map);
 int		ft_move(t_map *map, int axe, int pos);
+// SO_LONG - BACKTRACKING
+void	ft_copy_map(t_map *map);
+void	flood_fill(t_map *map, int move_x, int move_y);
 
 #endif
