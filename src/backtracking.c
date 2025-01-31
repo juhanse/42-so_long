@@ -6,11 +6,21 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 15:21:22 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/31 15:35:45 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	ft_free_copy(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while (++i < map->line)
+		free(map->map[i]);
+	free(map->copy);
+}
 
 void	ft_copy_map(t_map *map)
 {
@@ -26,9 +36,7 @@ void	ft_copy_map(t_map *map)
 		map->copy[i] = malloc(sizeof(char) * map->col);
 		if (!map->copy[i])
 		{
-			while (--i >= 0)
-				free(map->copy[i]);
-			free(map->copy);
+			ft_free_copy(map);
 			return ;
 		}
 		j = -1;
@@ -37,13 +45,17 @@ void	ft_copy_map(t_map *map)
 	}
 }
 
-int	flood_fill(char **map, int x, int y, int *collects)
+int	flood_fill(t_map *map, int x, int y, int *collects)
 {
-	if (map[x][y] == 'E' && *collects == 0)
+	if (x < 0 || x >= map->line || y < 0 || y >= map->col)
+		return (0);
+	if (map->copy[x][y] == '1')
+		return (0);
+	if (map->copy[x][y] == 'E' && *collects == 0)
 		return (1);
-	if (map[x][y] == 'C')
+	if (map->copy[x][y] == 'C')
 		(*collects)--;
-	map[x][y] = '1';
+	map->copy[x][y] = '1';
 	if (flood_fill(map, x - 1, y, collects) || flood_fill(map, x + 1, y, collects) || flood_fill(map, x, y - 1, collects) || flood_fill(map, x, y + 1, collects))
 		return (1);
 	return (0);
@@ -56,9 +68,13 @@ void	ft_map_reachable(t_map *map)
 
 	collects = map->collects;
 	ft_copy_map(map);
-	result = flood_fill(map->copy, map->player.y, map->player.x, &collects);
-	if (!result || collects != 0)
-        printf("Map is not reachable\n");
-    else
-        printf("Map is reachable\n");
+	result = flood_fill(map, map->player.y, map->player.x, &collects);
+	if (!result)
+	{
+		printf("Map is not reachable\n");
+		ft_free_map(map);
+		ft_free_copy(map);
+		exit(EXIT_FAILURE);
+	}
+	ft_free_copy(map);
 }
