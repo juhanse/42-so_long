@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 14:16:48 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/31 15:07:58 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_copy_map(t_map *map)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	map->copy = malloc(sizeof(char *) * map->line);
 	if (!map->copy)
-		return ;
+		exit(EXIT_FAILURE);
 	i = -1;
 	while (++i < map->line)
 	{
@@ -37,19 +37,27 @@ void	ft_copy_map(t_map *map)
 	}
 }
 
-void	flood_fill(t_map *map, int move_x, int move_y)
+int	flood_fill(char **map, int x, int y, int *collects)
 {
-	if (move_x < 0 || move_y < 0 || move_x >= map->col || move_y >= map->line || map->copy[move_x][move_y] == '1' || map->copy[move_x][move_y] == 'X')
-		return ;
-	if (((map->copy[move_x + 1][move_y] == 'E') || (map->copy[move_x - 1][move_y] == 'E')) && ((map->copy[move_x][move_y + 1] == '1') || (map->copy[move_x][move_y - 1] == '1')))
-		return ;
-	if (((map->copy[move_x][move_y + 1] == 'E') || (map->copy[move_x][move_y - 1] == 'E')) && ((map->copy[move_x + 1][move_y] == '1') || (map->copy[move_x - 1][move_y] == '1')))
-		return ;
-	if (map->copy[move_x][move_y] == 'E' || map->copy[move_x][move_y] == 'C')
-		map->copy[move_x][move_y] = '0';
-	map->copy[move_x][move_y] = 'X';
-	flood_fill(map, move_x - 1, move_y);
-	flood_fill(map, move_x + 1, move_y);
-	flood_fill(map, move_x, move_y - 1);
-	flood_fill(map, move_x, move_y + 1);
+	if (x < 0 || y < 0 || map[x][y] == '1')
+		return (0);
+	if (map[x][y] == 'E' && *collects == 0)
+		return (1);
+	if (map[x][y] == 'C')
+		(*collects)--;
+	map[x][y] = '1';
+	if (flood_fill(map, x - 1, y, collects) || flood_fill(map, x + 1, y, collects) || flood_fill(map, x, y - 1, collects) || flood_fill(map, x, y + 1, collects))
+		return (1);
+	return (0);
+}
+
+int	is_map_reachable(t_map *map)
+{
+	int	result;
+	int	collects;
+
+	collects = map->collects;
+	ft_copy_map(map);
+	result = flood_fill(map->copy, map->player.y, map->player.x, &collects);
+	return (result && collects == 0);
 }

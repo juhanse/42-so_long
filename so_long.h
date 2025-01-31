@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 13:15:25 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/01/31 15:05:34 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int		key_hook(int keycode, t_map *map);
 int		ft_move(t_map *map, int axe, int pos);
 // SO_LONG - BACKTRACKING
 void	ft_copy_map(t_map *map);
-void	flood_fill(t_map *map, int move_x, int move_y);
+int		flood_fill(char **map, int x, int y, int *collects);
+int		is_map_reachable(t_map *map);
 
 #endif
