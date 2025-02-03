@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/03 10:33:39 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/03 10:39:59 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,4 @@ void	ft_map_reachable(t_map *map)
 		ft_free_copy(map);
 		exit(EXIT_FAILURE);
 	}
-	ft_free_copy(map);
 }
