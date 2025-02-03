@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 21:13:05 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/03 10:27:05 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_free_copy(t_map *map)
 	while (++i < map->line)
 		free(map->map[i]);
 	free(map->copy);
+	map->copy = NULL;
 }
 
 void	ft_copy_map(t_map *map)
