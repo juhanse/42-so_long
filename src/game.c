@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/03 11:20:12 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/03 13:23:06 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	load_img(t_map *map, char *path, int index)
 	if (!map->assets[index].img)
 	{
 		printf("Failed load image\n");
+		quit_game(map);
 		exit(EXIT_FAILURE);
 	}
 }
