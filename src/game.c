@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 11:53:09 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/03 11:20:12 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	load_img(t_map *map, char *path, int index)
 	map->assets[index].path = path;
 	map->assets[index].width = IMG_PXL;
 	map->assets[index].height = IMG_PXL;
-	map->assets[index].img = mlx_xpm_file_to_image(map->mlx, path, &map->assets[index].width, &map->assets[index].height);
+	map->assets[index].img = mlx_xpm_file_to_image(map->mlx, path, \
+	&map->assets[index].width, &map->assets[index].height);
 	if (!map->assets[index].img)
 	{
 		printf("Failed load image\n");
@@ -43,14 +44,18 @@ void	fill_game(t_map *map)
 		while (map->map[i][++j])
 		{
 			if (map->map[i][j] == '1')
-				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, j * IMG_PXL, i * IMG_PXL);
+				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, \
+				j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'C')
-				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, j * IMG_PXL, i * IMG_PXL);
+				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, \
+				j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'E')
-				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[3].img, j * IMG_PXL, i * IMG_PXL);
+				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[3].img, \
+				j * IMG_PXL, i * IMG_PXL);
 		}
 	}
-	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, map->player.x * IMG_PXL, map->player.y * IMG_PXL);
+	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, \
+	map->player.x * IMG_PXL, map->player.y * IMG_PXL);
 }
 
 int	quit_game(t_map *map)
