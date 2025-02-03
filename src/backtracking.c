@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/03 11:46:13 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/03 11:58:56 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int	flood_fill(t_map *map, int x, int y, int *collects)
 			printf("%c", map->copy[i][j]);
 		printf("\n");
 	}
-	if (map->copy[x][y] == 'E')
-		return (*collects == 0);
 	if (map->copy[x][y] == 'C')
 		(*collects)--;
+	if (map->copy[x][y] == 'E' && *collects == 0)
+		return (1);
 	map->copy[x][y] = '1';
 	if (flood_fill(map, x - 1, y, collects) || \
 	flood_fill(map, x + 1, y, collects) || \
@@ -87,11 +87,11 @@ void	ft_map_reachable(t_map *map)
 	collects = map->collects;
 	ft_copy_map(map);
 	result = flood_fill(map, map->player.y, map->player.x, &collects);
-	if (!result || collects != 0)
+	ft_free_copy(map);
+	if (!result)
 	{
 		printf("Map is not reachable\n");
 		ft_free_map(map);
-		ft_free_copy(map);
 		exit(EXIT_FAILURE);
 	}
 }
