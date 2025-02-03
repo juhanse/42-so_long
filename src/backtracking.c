@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/03 11:19:16 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/03 11:46:13 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,18 @@ int	flood_fill(t_map *map, int x, int y, int *collects)
 	if (map->copy[x][y] == '1')
 		return (0);
 	printf("Exploring [%d, %d]\n", x, y);
+	int i = -1;
+	while (++i < map->line)
+	{
+		int j = -1;
+		while (++j < map->col)
+			printf("%c", map->copy[i][j]);
+		printf("\n");
+	}
 	if (map->copy[x][y] == 'E')
 		return (*collects == 0);
 	if (map->copy[x][y] == 'C')
-	{
 		(*collects)--;
-		map->copy[x][y] = '1';
-	}
 	map->copy[x][y] = '1';
 	if (flood_fill(map, x - 1, y, collects) || \
 	flood_fill(map, x + 1, y, collects) || \
