@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/03 10:27:05 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/03 10:33:39 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	ft_copy_map(t_map *map)
 
 	map->copy = malloc(sizeof(char *) * map->line);
 	if (!map->copy)
-		{
-			printf("Malloc failed for map copy\n");
-			ft_free_copy(map);
-			exit(EXIT_FAILURE);
-		}
+	{
+		printf("Malloc failed for map copy\n");
+		ft_free_copy(map);
+		exit(EXIT_FAILURE);
+	}
 	i = -1;
 	while (++i < map->line)
 	{
