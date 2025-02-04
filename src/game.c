@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/03 13:23:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/04 14:58:46 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_img(t_map *map, char *path, int index)
 {
 	if (!path || map->assets[index].img)
 	{
-		printf("Failed load image\n");
+		printf("Error\nFailed load image\n");
 		exit(EXIT_FAILURE);
 	}
 	map->assets[index].path = path;
@@ -27,7 +27,7 @@ void	load_img(t_map *map, char *path, int index)
 	&map->assets[index].width, &map->assets[index].height);
 	if (!map->assets[index].img)
 	{
-		printf("Failed load image\n");
+		printf("Error\nFailed load image\n");
 		quit_game(map);
 		exit(EXIT_FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/04 12:33:57 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/04 14:59:36 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_move(t_map *map, int axe, int pos)
 void	refresh_game(t_map *map)
 {
 	if (!map->mlx || !map->wnd)
-		printf("Failed to refresh game\n");
+		printf("Error\nFailed to refresh game\n");
 	mlx_clear_window(map->mlx, map->wnd);
 	fill_game(map);
 	if (ft_count_items(map, 'E') == 0)
