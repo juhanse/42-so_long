@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtracking.c                                     :+:      :+:    :+:   */
+/*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/04 12:30:27 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:32:24 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	flood_fill(t_map *map, int x, int y, int *collects)
 }
 
 void	ft_map_reachable(t_map *map)
-{ 
+{
 	int	collects;
 
 	collects = map->collects;
@@ -83,4 +83,3 @@ void	ft_map_reachable(t_map *map)
 		exit(EXIT_FAILURE);
 	}
 }
- 
