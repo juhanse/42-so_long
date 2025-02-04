@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/30 15:48:43 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:33:57 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ int	key_hook(int keycode, t_map *map)
 			return (0);
 	}
 	else if (keycode == ESC)
-	{
-		printf("ESC\n");
 		quit_game(map);
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/04 12:18:54 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:33:24 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	main(int argc, char **argv)
 	ft_init_map(&map, argv[1]);
 	map.mlx = mlx_init();
 	map.wnd = mlx_new_window(map.mlx, X, Y, WND_NAME);
-	printf("\nMAIN: %d | %d\n", map.player.y, map.player.x);
 	start_game(&map);
 	mlx_loop(map.mlx);
 	return (0);
