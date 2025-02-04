@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/31 15:35:25 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:29:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_map
 	int			col;
 	int			collects;
 	int			move_count;
+	int			exit_found;
 	void		*mlx;
 	void		*wnd;
 	t_player	player;
@@ -102,7 +103,7 @@ int		ft_move(t_map *map, int axe, int pos);
 // SO_LONG - BACKTRACKING
 void	ft_free_copy(t_map *map);
 void	ft_copy_map(t_map *map);
-int		flood_fill(t_map *map, int x, int y, int *collects);
+void	flood_fill(t_map *map, int x, int y, int *collects);
 void	ft_map_reachable(t_map *map);
 
 #endif
