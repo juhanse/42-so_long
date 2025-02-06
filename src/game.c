@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/06 17:00:52 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/06 17:09:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,21 @@ void	fill_game(t_map *map)
 		j = -1;
 		while (map->map[i][++j])
 		{
-			if (map->map[i][j] == '1')
+			if (map->map[i][j] == '0')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, \
 				j * IMG_PXL, i * IMG_PXL);
+			else if (map->map[i][j] == '1')
+				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, \
+				j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'C')
-				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, \
+				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[3].img, \
 				j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == 'E')
-				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[3].img, \
+				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[4].img, \
 				j * IMG_PXL, i * IMG_PXL);
 		}
 	}
-	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[1].img, \
+	mlx_put_image_to_window(map->mlx, map->wnd, map->assets[2].img, \
 	map->player.x * IMG_PXL, map->player.y * IMG_PXL);
 }
 
@@ -65,6 +68,7 @@ int	quit_game(t_map *map)
 	mlx_destroy_image(map->mlx, map->assets[1].img);
 	mlx_destroy_image(map->mlx, map->assets[2].img);
 	mlx_destroy_image(map->mlx, map->assets[3].img);
+	mlx_destroy_image(map->mlx, map->assets[4].img);
 	mlx_destroy_window(map->mlx, map->wnd);
 	mlx_destroy_display(map->mlx);
 	free(map->mlx);
@@ -84,9 +88,10 @@ void	finish_game(t_map *map)
 void	start_game(t_map *map)
 {
 	load_img(map, "./assets/grass.xpm", 0);
-	load_img(map, "./assets/player.xpm", 1);
-	load_img(map, "./assets/collect.xpm", 2);
-	load_img(map, "./assets/exit.xpm", 3);
+	load_img(map, "./assets/wall.xpm", 1);
+	load_img(map, "./assets/player.xpm", 2);
+	load_img(map, "./assets/collect.xpm", 3);
+	load_img(map, "./assets/exit.xpm", 4);
 	fill_game(map);
 	ft_hooks(map);
 }
