@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 18:38:13 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 00:49:12 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,18 @@ void	ft_allocate_map(t_map *map)
 	i = -1;
 	map->map = (char **)malloc(map->line * sizeof(char *));
 	if (!map->map)
-		return ; //exit le programme et msg erreur?
+	{
+		ft_printf("Error\nMalloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	while (++i < map->line)
 	{
-		map->map[i] = (char *)malloc((map->col + 1 )* sizeof(char)); //malloc le /n?
+		map->map[i] = (char *)malloc((map->col + 1) * sizeof(char));
 		if (!map->map[i])
 		{
 			ft_free_map(map);
-			return ; //exit le programme
+			ft_printf("Error\nMalloc failed\n");
+			exit(EXIT_FAILURE);
 		}
 	}
 }
