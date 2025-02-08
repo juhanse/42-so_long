@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 23:27:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/01/20 17:05:29 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 16:19:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (buffer);
 }
 
-char	*ft_strchr(const char *str, int character)
+char	*ft_strchr(char *str, int character)
 {
 	if (!str)
 		return (NULL);
