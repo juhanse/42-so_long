@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 14:19:59 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:19:02 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	finish_game(t_map *map)
 
 void	start_game(t_map *map)
 {
-	load_img(map, "./assets/grass.xpm", 0);
+	load_img(map, "./assets/floor.xpm", 0);
 	load_img(map, "./assets/wall.xpm", 1);
 	load_img(map, "./assets/player.xpm", 2);
 	load_img(map, "./assets/item.xpm", 3);
