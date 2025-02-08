@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 14:20:35 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 15:44:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_read_map(t_map *map)
 	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
-		//ft_printf("%s | %d\n", line, map->col);
+		ft_printf("%s | %d\n", line, ft_strlen(line) - 1);
 		if (ft_strlen(line) - 1 != map->col)
 		{
 			ft_printf("Error\nMap is not a rectangle\n");
