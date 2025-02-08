@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 23:27:01 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 15:53:28 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:53:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*ft_get_line(char *buffer)
 	line = (char *)malloc(len + 1);
 	if (!line)
 		return (NULL);
-	ft_strlcpy(line, buffer, (len + 1));
+	ft_strlcpy(line, buffer, len + 1); //verifier
 	return (line);
 }
 

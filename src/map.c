@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 17:47:23 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:38:13 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ void	ft_read_map(t_map *map)
 	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
-		printf("%d [%d] %s\n", map->line, ft_strlen(line) - 1, line);
+		//printf("%d [%d] %s\n", map->line, ft_strlen(line) - 1, line);
 		free(line);
 		map->line++;
 		line = get_next_line(fd);
 	}
+	//printf("%d %d\n", map->line, map->col);
 	close(fd);
 }
 
@@ -69,17 +70,16 @@ void	ft_allocate_map(t_map *map)
 	i = -1;
 	map->map = (char **)malloc(map->line * sizeof(char *));
 	if (!map->map)
-		return ;
+		return ; //exit le programme et msg erreur?
 	while (++i < map->line)
 	{
-		map->map[i] = (char *)malloc(map->col * sizeof(char));
+		map->map[i] = (char *)malloc((map->col + 1 )* sizeof(char)); //malloc le /n?
 		if (!map->map[i])
 		{
 			ft_free_map(map);
-			return ;
+			return ; //exit le programme
 		}
 	}
-	//map->map[map->line] = NULL;
 }
 
 void	ft_fill_map(t_map *map)
@@ -91,19 +91,20 @@ void	ft_fill_map(t_map *map)
 	i = -1;
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
-		return ;
+		return ; //exit and free
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (ft_strlen(line) - 1 != map->col)
 		{
 			ft_printf("Error\nMap is not a rectangle\n");
-			free(line);
+			free(line); //free **map?
 			exit(EXIT_FAILURE);
 		}
-		ft_strlcpy(map->map[++i], line, map->col + 1);
+		ft_strlcpy(map->map[++i], line, map->col + 1); //(27, 28, 28)?
 		free(line);
 		line = get_next_line(fd);
+		printf("%s - 1\n", line);
 	}
 	free(line);
 	close(fd);

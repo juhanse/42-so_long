@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 14:20:54 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 18:31:54 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_count_items(t_map *map, char type)
 	return (count);
 }
 
-static int	ft_check_char(t_map *map)
+static int	ft_check_char(t_map *map) //modif pour ignorer le \n
 {
 	int	i;
 	int	j;
