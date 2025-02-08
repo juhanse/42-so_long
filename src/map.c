@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 17:07:13 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 17:47:23 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_read_map(t_map *map)
 	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
+		printf("%d [%d] %s\n", map->line, ft_strlen(line) - 1, line);
 		free(line);
 		map->line++;
 		line = get_next_line(fd);
@@ -66,12 +67,12 @@ void	ft_allocate_map(t_map *map)
 	int	i;
 
 	i = -1;
-	map->map = (char **)malloc(sizeof(char *) * (map->line));
+	map->map = (char **)malloc(map->line * sizeof(char *));
 	if (!map->map)
 		return ;
 	while (++i < map->line)
 	{
-		map->map[i] = (char *)malloc(sizeof(char) * (map->col));
+		map->map[i] = (char *)malloc(map->col * sizeof(char));
 		if (!map->map[i])
 		{
 			ft_free_map(map);
