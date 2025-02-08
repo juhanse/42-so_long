@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/06 17:07:29 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 14:19:22 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include <limits.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -73,6 +74,7 @@ typedef struct s_map
 int		ft_isalnum(int c);
 int		ft_strlen(char *s);
 int		ft_strlcpy(char *dst, char *src, int dstsize);
+int		ft_printf(const char *s, ...);
 
 // GET_NEXT_LINE
 char	*ft_strjoin(char *s1, char *s2);

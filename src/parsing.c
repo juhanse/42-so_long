@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/04 15:00:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 14:20:54 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_check_char(t_map *map)
 			map->map[i][j] != 'C' && map->map[i][j] != 'P' && \
 			map->map[i][j] != 'E')
 			{
-				printf("Error\nInvalid characters\n");
+				ft_printf("Error\nInvalid characters\n");
 				return (0);
 			}
 		}
@@ -70,7 +70,7 @@ static int	ft_check_walls(t_map *map)
 			{
 				if (map->map[i][j] != '1')
 				{
-					printf("Error\nMissing walls\n");
+					ft_printf("Error\nMissing walls\n");
 					return (0);
 				}
 			}
@@ -105,7 +105,7 @@ void	ft_parse_map(t_map *map)
 	if (!map || !map->map || !map->map[0])
 	{
 		ft_free_map(map);
-		printf("Error\nMap is empty\n");
+		ft_printf("Error\nMap is empty\n");
 		exit(EXIT_FAILURE);
 	}
 	if (!ft_check_char(map) || !ft_check_walls(map))
@@ -117,7 +117,7 @@ void	ft_parse_map(t_map *map)
 	|| ft_count_items(map, 'C') < 1)
 	{
 		ft_free_map(map);
-		printf("Error\nInvalid number of items\n");
+		ft_printf("Error\nInvalid number of items\n");
 		exit(EXIT_FAILURE);
 	}
 	map->collects = ft_count_items(map, 'C');

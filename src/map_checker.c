@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/04 14:59:14 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 14:20:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_copy_map(t_map *map)
 	map->copy = malloc(sizeof(char *) * map->line);
 	if (!map->copy)
 	{
-		printf("Error\nMalloc failed for map copy\n");
+		ft_printf("Error\nMalloc failed for map copy\n");
 		ft_free_copy(map);
 		exit(EXIT_FAILURE);
 	}
@@ -41,7 +41,7 @@ void	ft_copy_map(t_map *map)
 		map->copy[i] = malloc(sizeof(char) * map->col);
 		if (!map->copy[i])
 		{
-			printf("Error\nMalloc failed for map copy\n");
+			ft_printf("Error\nMalloc failed for map copy\n");
 			ft_free_copy(map);
 			exit(EXIT_FAILURE);
 		}
@@ -78,7 +78,7 @@ void	ft_map_reachable(t_map *map)
 	ft_free_copy(map);
 	if (map->exit_found != 1 || collects != 0)
 	{
-		printf("Error\nMap is not reachable\n");
+		ft_printf("Error\nMap is not reachable\n");
 		ft_free_map(map);
 		exit(EXIT_FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/04 14:59:03 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 14:20:06 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_init_map(t_map *map, char *map_path)
 {
 	if (!map_path)
 	{
-		printf("Error\nInvalid map file\n");
+		ft_printf("Error\nInvalid map file\n");
 		exit(EXIT_FAILURE);
 	}
 	*map = (t_map){0};
@@ -28,7 +28,7 @@ void	ft_init_map(t_map *map, char *map_path)
 	ft_fill_map(map);
 	ft_parse_map(map);
 	ft_map_reachable(map);
-	printf("Map is valid\n");
+	ft_printf("Map is valid\n");
 }
 
 int	main(int argc, char **argv)
@@ -37,7 +37,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("Error\nInvalid arguments\n");
+		ft_printf("Error\nInvalid arguments\n");
 		return (0);
 	}
 	ft_init_map(&map, argv[1]);

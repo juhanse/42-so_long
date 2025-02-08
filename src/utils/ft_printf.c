@@ -6,20 +6,20 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:00:19 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/04 15:05:58 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 14:19:38 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-int	ft_putchar(char c, int *count)
+int	ft_putchar(char c, int count)
 {
 	write(1, &c, 1);
-	(*count)++;
+	count++;
 	return (count);
 }
 
-int	ft_putstr(char *s, int *count)
+int	ft_putstr(char *s, int count)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	ft_putstr(char *s, int *count)
 	return (count);
 }
 
-int	ft_putnbr(int n, int *count)
+int	ft_putnbr(int n, int count)
 {
 	if (n < 0)
 	{
@@ -38,8 +38,8 @@ int	ft_putnbr(int n, int *count)
 	}
 	if (n > 9)
 	{
-		ft_putnbr(n / 10, count);
-		ft_putnbr(n % 10, count);
+		count += ft_putnbr(n / 10, count);
+		count += ft_putnbr(n % 10, count);
 	}
 	else
 		count += ft_putchar(n + '0', count);
@@ -55,14 +55,16 @@ int	ft_printf(const char *s, ...)
 	i = -1;
 	count = 0;
 	va_start(args, s);
+	if (!s)
+		return (0);
 	while (s[++i])
 	{
 		if (s[i] == '%')
 		{
 			if (s[i + 1] == 'd')
-				count += ft_putnbr(va_arg(args, int), &count);
+				count += ft_putnbr(va_arg(args, int), count);
 			else if (s[i + 1] == 's')
-				count += ft_putstr(va_arg(args, char *), &count);
+				count += ft_putstr(va_arg(args, char *), count);
 			i++;
 		}
 		else
@@ -71,3 +73,9 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (count);
 }
+
+// int	main(void)
+// {
+// 	ft_printf("%d\n", ft_printf("Hello %s | %d\n", "world", 42));
+// 	return (0);
+// }

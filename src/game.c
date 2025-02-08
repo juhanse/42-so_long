@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/06 17:14:29 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/08 14:19:59 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	load_img(t_map *map, char *path, int index)
 {
 	if (!path || map->assets[index].img)
 	{
-		printf("Error\nFailed load image\n");
+		ft_printf("Error\nFailed load image\n");
 		exit(EXIT_FAILURE);
 	}
 	map->assets[index].path = path;
@@ -27,7 +27,7 @@ void	load_img(t_map *map, char *path, int index)
 	&map->assets[index].width, &map->assets[index].height);
 	if (!map->assets[index].img)
 	{
-		printf("Error\nFailed load image\n");
+		ft_printf("Error\nFailed load image\n");
 		quit_game(map);
 		exit(EXIT_FAILURE);
 	}
@@ -44,7 +44,7 @@ void	fill_game(t_map *map)
 		j = -1;
 		while (map->map[i][++j])
 		{
-			if (map->map[i][j] == '0')
+			if (map->map[i][j] == '0' || map->map[i][j] == 'P')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, \
 				j * IMG_PXL, i * IMG_PXL);
 			else if (map->map[i][j] == '1')
@@ -73,7 +73,7 @@ int	quit_game(t_map *map)
 	mlx_destroy_display(map->mlx);
 	free(map->mlx);
 	ft_free_map(map);
-	printf("Leave game\n");
+	ft_printf("Leave game\n");
 	exit(0);
 	return (0);
 }
@@ -81,7 +81,7 @@ int	quit_game(t_map *map)
 void	finish_game(t_map *map)
 {
 	mlx_string_put(map->mlx, map->wnd, 10, 10, 0x00FFFFFF, "You won!");
-	printf("\x1B[32m🎉 You won!\x1B[37m\n");
+	ft_printf("\x1B[32m🎉 You won!\x1B[37m\n");
 	quit_game(map);
 }
 
