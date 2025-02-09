@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 14:20:06 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 18:22:35 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	}
 	ft_init_map(&map, argv[1]);
 	map.mlx = mlx_init();
-	map.wnd = mlx_new_window(map.mlx, X, Y, WND_NAME);
+	map.wnd = mlx_new_window(map.mlx, map.col * IMG_PXL, map.line * IMG_PXL, WND_NAME);
 	start_game(&map);
 	mlx_loop(map.mlx);
 	return (0);
