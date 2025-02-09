@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 18:31:54 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 01:03:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ int	ft_count_items(t_map *map, char type)
 	return (count);
 }
 
-static int	ft_check_char(t_map *map) //modif pour ignorer le \n
+static int	ft_check_char(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (map->map[++i])
+	while (++i < map->line)
 	{
 		j = -1;
-		while (map->map[i][++j])
+		while (j++ < map->col - 1)
 		{
 			if (map->map[i][j] != '0' && map->map[i][j] != '1' && \
 			map->map[i][j] != 'C' && map->map[i][j] != 'P' && \
