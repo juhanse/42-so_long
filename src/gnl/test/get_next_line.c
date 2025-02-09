@@ -6,13 +6,12 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by jdecorte          #+#    #+#             */
-/*   Updated: 2025/02/09 18:44:45 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 19:51:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-// join and free
 char	*ft_free(char *buffer, char *buf)
 {
 	char	*temp;
@@ -112,10 +111,9 @@ char	*read_file(int fd, char *res)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
 	char		*line;
+	static char	*buffer;
 
-	// error handling
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	buffer = read_file(fd, buffer);
