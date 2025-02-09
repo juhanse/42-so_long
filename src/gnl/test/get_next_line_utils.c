@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2025/02/09 19:18:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 19:19:14 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,23 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t elementCount, size_t elementSize)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	*res;
+	char	*buffer;
 
-	res = malloc(elementSize * elementCount);
-	if (!res)
+	buffer = malloc(size * count);
+	if (!buffer)
 		return (NULL);
-	ft_bzero(res, elementSize * elementCount);
-	return (res);
+	ft_bzero(buffer, size * count);
+	return (buffer);
 }
 
-size_t	ft_strlen(const char *theString)
+size_t	ft_strlen(char *s)
 {
 	int	i;
 
 	i = 0;
-	while (theString[i])
+	while (s[i])
 		i++;
 	return (i);
 }
