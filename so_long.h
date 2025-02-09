@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 16:20:11 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 18:25:11 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@
 #  define BUFFER_SIZE 1
 # endif
 
-# define X 1730
-# define Y 550
-# define UP 65362
 # define DOWN 65364
 # define RIGHT 65363
 # define LEFT 65361
