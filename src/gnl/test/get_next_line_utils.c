@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2021/10/19 11:32:26 by jdecorte         ###   ########.fr       */
+/*   Updated: 2025/02/09 18:46:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../../so_long.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

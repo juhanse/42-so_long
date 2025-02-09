@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdecorte <jdecorte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by jdecorte          #+#    #+#             */
-/*   Updated: 2021/11/08 23:14:55 by jdecorte         ###   ########.fr       */
+/*   Updated: 2025/02/09 18:44:45 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../../so_long.h"
 
 // join and free
 char	*ft_free(char *buffer, char *buf)
