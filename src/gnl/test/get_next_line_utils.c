@@ -6,38 +6,38 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2025/02/09 18:46:20 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 19:14:36 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../so_long.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		sizetotal;
-	char	*res;
 	int		i;
 	int		j;
+	int		total;
+	char	*buffer;
 
 	i = 0;
-	sizetotal = ft_strlen(s1) + ft_strlen(s2);
-	res = malloc(sizeof(char) * (sizetotal + 1));
-	if (!res || !s1 || !s2)
+	total = ft_strlen(s1) + ft_strlen(s2);
+	buffer = malloc(sizeof(char) * (total + 1));
+	if (!buffer || !s1 || !s2)
 		return (NULL);
 	while (s1[i] != 0)
 	{
-		res[i] = s1[i];
+		buffer[i] = s1[i];
 		i++;
 	}
 	j = 0;
 	while (s2[j] != 0)
 	{
-		res[i] = s2[j];
+		buffer[i] = s2[j];
 		i++;
 		j++;
 	}
-	res[sizetotal] = 0;
-	return (res);
+	buffer[total] = 0;
+	return (buffer);
 }
 
 char	*ft_strchr(const char *string, int searchedChar )
