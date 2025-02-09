@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2025/02/09 19:14:36 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/09 19:18:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (buffer);
 }
 
-char	*ft_strchr(const char *string, int searchedChar )
+char	*ft_strchr(char *s, int search)
 {
+	int		i;
 	char	*str;
 
-	str = (char *)string;
-	while (*str != searchedChar && *str != 0)
-		str++;
-	if (*str == searchedChar)
-		return (str);
+	i = 0;
+	while (s[i] && s[i] != search)
+		i++;
+	if (s[i] == search)
+		return (s);
 	else
 		return (NULL);
 }
