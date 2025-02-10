@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 15:10:53 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:30:45 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	ft_check_path(t_map *map)
 	if (map->map_path[len - 1] != 'r' || map->map_path[len - 2] != 'e' || \
 	map->map_path[len - 3] != 'b' || map->map_path[len - 4] != '.')
 	{
-		ft_printf("Error\nBad path map\n");
+		ft_printf("Error\nBad format path map\n");
 		exit(EXIT_FAILURE);
 	}
 	if (!ft_isalnum(map->map_path[len - 5]))
 	{
-		ft_printf("Error\nBad path map\n");
+		ft_printf("Error\nBad format path map\n");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -49,7 +49,10 @@ void	ft_read_map(t_map *map)
 
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
+	{
+		printf("Error\nBad path map\n");
 		exit(EXIT_FAILURE);
+	}
 	line = get_next_line(fd);
 	map->col = ft_strlen(line) - 1;
 	while (line)
