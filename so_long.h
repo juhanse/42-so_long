@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 10:33:25 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:39:53 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <math.h>
 # include <limits.h>
 # include <unistd.h>
 # include <stdarg.h>
-
-# include <stdlib.h>
-# include <sys/types.h>
-# include <sys/uio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
