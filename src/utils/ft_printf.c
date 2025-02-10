@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:00:19 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 14:38:45 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:36:13 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,3 @@ int	ft_printf(const char *s, ...)
 	va_end(args);
 	return (count);
 }
-
-// int	main(void)
-// {
-// 	ft_printf("%d\n", ft_printf("Hello %s | %d\n", "world", 42));
-// 	return (0);
-// }
