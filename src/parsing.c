@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/09 01:03:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:55:16 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	ft_count_items(t_map *map, char type)
 
 	i = -1;
 	count = 0;
-	while (map->map[++i])
+	while (++i < map->line)
 	{
 		j = -1;
-		while (map->map[i][++j])
+		while (j++ < map->col - 1)
 		{
 			if (map->map[i][j] == type)
 				count++;
@@ -61,12 +61,12 @@ static int	ft_check_walls(t_map *map)
 	int	j;
 
 	i = -1;
-	while (map->map[++i])
+	while (++i < map->line)
 	{
 		j = -1;
-		while (map->map[i][++j])
+		while (j++ < map->col - 1)
 		{
-			if (i == 0 || i == map->line - 1 || j == 0 || j == map->col - 1)
+			if (i == 0 || i == map->line || j == 0 || j == map->col)
 			{
 				if (map->map[i][j] != '1')
 				{
