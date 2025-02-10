@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 17:48:52 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:39:57 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	ft_fill_map(t_map *map)
 	line = get_next_line(fd);
 	while (line)
 	{
+		printf("%d | %s\n", ft_strlen(line), line);
 		ft_strlcpy(map->map[++i], line, ft_strlen(line));
 		free(line);
 		line = get_next_line(fd);

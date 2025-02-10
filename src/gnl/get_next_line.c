@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 18:45:35 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 19:19:31 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,24 @@ char	*ft_next(char *buffer)
 {
 	int		i;
 	int		j;
-	char	*line;
+	char	*new_buffer;
 
 	i = 0;
-	if (!buffer[i])
+	if (!buffer || !buffer[i])
 	{
 		free(buffer);
 		return (NULL);
 	}
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	new_buffer = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
 	i++;
 	j = 0;
 	while (buffer[i])
-		line[j++] = buffer[i++];
+		new_buffer[j++] = buffer[i++];
+	printf("LINE: %p\nBUFFER:%p\n\n", new_buffer, buffer);
 	free(buffer);
-	return (line);
+	return (new_buffer);
 }
 
 char	*get_next_line(int fd)
@@ -106,6 +107,8 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	line = ft_line(buffer);
+	if (!line)
+		return (NULL);
 	buffer = ft_next(buffer);
 	return (line);
 }
