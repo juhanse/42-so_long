@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 10:19:52 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:10:18 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_read_map(t_map *map)
 		map->line++;
 		line = get_next_line(fd);
 	}
-	//printf("%d %d\n", map->line, map->col);
+	printf("%d %d\n", map->line, map->col);
 	close(fd);
 }
 
@@ -85,8 +85,8 @@ void	ft_allocate_map(t_map *map)
 		map->map[i] = (char *)malloc((map->col + 1) * sizeof(char));
 		if (!map->map[i])
 		{
-			ft_free_map(map);
 			ft_printf("Error\nMalloc failed\n");
+			ft_free_map(map);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -111,7 +111,6 @@ void	ft_fill_map(t_map *map)
 		ft_strlcpy(map->map[++i], line, map->col + 1);
 		free(line);
 		line = get_next_line(fd);
-		printf("%s - 1\n", line);
 	}
 	free(line);
 	close(fd);
