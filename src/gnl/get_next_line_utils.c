@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 10:31:23 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 14:42:34 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,20 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		total;
 	char	*buffer;
 
-	i = 0;
+	i = -1;
 	total = ft_strlen(s1) + ft_strlen(s2);
-	buffer = malloc(sizeof(char) * (total + 1));
+	buffer = malloc((total + 1) * sizeof(char));
 	if (!buffer || !s1 || !s2)
 		return (NULL);
-	while (s1[i] != 0)
-	{
+	while (s1[++i])
 		buffer[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j] != 0)
+	j = -1;
+	while (s2[++j])
 	{
 		buffer[i] = s2[j];
 		i++;
-		j++;
 	}
-	buffer[total] = 0;
+	buffer[total] = '\0';
 	return (buffer);
 }
 
