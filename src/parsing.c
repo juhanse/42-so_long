@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 17:57:02 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 17:59:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static int	ft_check_walls(t_map *map)
 	int	j;
 
 	i = -1;
-	printf("%d | %d\n", map->line, map->col);
 	while (++i < map->line)
 	{
 		j = -1;
@@ -69,7 +68,6 @@ static int	ft_check_walls(t_map *map)
 		{
 			if (i == 0 || i == map->line - 1 || j == 0 || j == map->col - 1)
 			{
-				printf("%d - %d | %c\n", map->line, map->col, map->map[i][j]);
 				if (map->map[i][j] != '1')
 				{
 					ft_printf("Error\nMissing walls\n");
