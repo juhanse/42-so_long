@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 12:20:57 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:34:34 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*ft_free(char *buffer, char *buf)
 
 char	*read_file(int fd, char *res)
 {
-	char	*buffer;
 	int		byte_read;
+	char	*buffer;
 
 	if (!res)
 		res = ft_calloc(1, 1);
@@ -38,7 +38,7 @@ char	*read_file(int fd, char *res)
 			free(buffer);
 			return (NULL);
 		}
-		buffer[byte_read] = 0;
+		buffer[byte_read] = '\0';
 		res = ft_free(res, buffer);
 		if (ft_strchr(buffer, '\n'))
 			break ;
@@ -49,8 +49,8 @@ char	*read_file(int fd, char *res)
 
 char	*ft_line(char *buffer)
 {
-	char	*line;
 	int		i;
+	char	*line;
 
 	i = 0;
 	if (!buffer[i])
@@ -67,7 +67,7 @@ char	*ft_line(char *buffer)
 	if (buffer[i] == '\n')
 		line[i++] = '\n';
 	if (buffer[i] == '\0' && line[i - 1] != '\n')
-		line[i] = '\n';
+		line[i++] = '\n';
 	return (line);
 }
 
@@ -78,13 +78,13 @@ char	*ft_next(char *buffer)
 	char	*line;
 
 	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
 	if (!buffer[i])
 	{
 		free(buffer);
 		return (NULL);
 	}
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
 	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
 	i++;
 	j = 0;
