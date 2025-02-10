@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 12:39:53 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 13:11:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	load_img(t_map *map, char *path, int index);
 void	fill_game(t_map *map);
 void	start_game(t_map *map);
 void	refresh_game(t_map *map);
-int		quit_game(t_map *map);
+void	quit_game(t_map *map);
 void	finish_game(t_map *map);
 // SO_LONG - MOVE
 int		key_hook(int keycode, t_map *map);
