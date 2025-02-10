@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 23:27:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 16:19:33 by juhanse          ###   ########.fr       */
+/*   Created: 2021/10/19 11:14:11 by juhanse           #+#    #+#             */
+/*   Updated: 2025/02/10 10:31:23 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,52 +16,65 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
-	int		size;
+	int		total;
 	char	*buffer;
 
 	i = 0;
-	size = ft_strlen(s1) + ft_strlen(s2);
-	buffer = malloc(sizeof(char) * (size + 1));
+	total = ft_strlen(s1) + ft_strlen(s2);
+	buffer = malloc(sizeof(char) * (total + 1));
 	if (!buffer || !s1 || !s2)
 		return (NULL);
-	while (s1[i])
+	while (s1[i] != 0)
 	{
 		buffer[i] = s1[i];
 		i++;
 	}
-	j = -1;
-	while (s2[++j])
+	j = 0;
+	while (s2[j] != 0)
 	{
 		buffer[i] = s2[j];
 		i++;
+		j++;
 	}
-	buffer[size] = 0;
+	buffer[total] = 0;
 	return (buffer);
 }
 
-char	*ft_strchr(char *str, int character)
+char	*ft_strchr(char *s, int c)
 {
-	if (!str)
-		return (NULL);
-	while (*str || (char)character == '\0')
-	{
-		if (*str == (char)character)
-			return ((char *)str);
-		str++;
-	}
-	if (*str == character)
-		return ((char *)str);
+	size_t	i;
+	char	search;
+
+	i = 0;
+	search = (char) c;
+	while (s[i] && s[i] != search)
+		i++;
+	if (s[i] == search)
+		return ((char *) s + i);
 	return (NULL);
 }
 
-char	*ft_line_cat(char **s1, char *s2)
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)s;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = '\0';
+		i++;
+	}
+}
+
+void	*ft_calloc(size_t count, size_t size)
 {
 	char	*buffer;
 
-	if (*s1)
-		buffer = ft_strjoin(*s1, s2);
-	else
-		buffer = ft_strjoin("", s2);
-	free(*s1);
+	buffer = malloc(size * count);
+	if (!buffer)
+		return (NULL);
+	ft_bzero(buffer, size * count);
 	return (buffer);
 }

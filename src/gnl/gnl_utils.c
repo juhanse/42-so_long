@@ -5,86 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2025/02/09 19:19:14 by juhanse          ###   ########.fr       */
+/*   Created: 2024/10/31 23:27:33 by juhanse           #+#    #+#             */
+/*   Updated: 2025/02/08 16:19:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../so_long.h"
+#include "../../so_long.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
-	int		total;
+	int		size;
 	char	*buffer;
 
 	i = 0;
-	total = ft_strlen(s1) + ft_strlen(s2);
-	buffer = malloc(sizeof(char) * (total + 1));
+	size = ft_strlen(s1) + ft_strlen(s2);
+	buffer = malloc(sizeof(char) * (size + 1));
 	if (!buffer || !s1 || !s2)
 		return (NULL);
-	while (s1[i] != 0)
+	while (s1[i])
 	{
 		buffer[i] = s1[i];
 		i++;
 	}
-	j = 0;
-	while (s2[j] != 0)
+	j = -1;
+	while (s2[++j])
 	{
 		buffer[i] = s2[j];
 		i++;
-		j++;
 	}
-	buffer[total] = 0;
+	buffer[size] = 0;
 	return (buffer);
 }
 
-char	*ft_strchr(char *s, int search)
+char	*ft_strchr(char *str, int character)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	while (s[i] && s[i] != search)
-		i++;
-	if (s[i] == search)
-		return (s);
-	else
+	if (!str)
 		return (NULL);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	char	*str;
-	size_t	i;
-
-	str = (char *)s;
-	i = 0;
-	while (i < n)
+	while (*str || (char)character == '\0')
 	{
-		str[i] = '\0';
-		i++;
+		if (*str == (char)character)
+			return ((char *)str);
+		str++;
 	}
+	if (*str == character)
+		return ((char *)str);
+	return (NULL);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_line_cat(char **s1, char *s2)
 {
 	char	*buffer;
 
-	buffer = malloc(size * count);
-	if (!buffer)
-		return (NULL);
-	ft_bzero(buffer, size * count);
+	if (*s1)
+		buffer = ft_strjoin(*s1, s2);
+	else
+		buffer = ft_strjoin("", s2);
+	free(*s1);
 	return (buffer);
-}
-
-size_t	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }

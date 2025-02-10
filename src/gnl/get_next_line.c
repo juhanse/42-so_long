@@ -5,110 +5,115 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/31 23:27:01 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 18:53:14 by juhanse          ###   ########.fr       */
+/*   Created: 2021/10/19 11:09:06 by juhanse           #+#    #+#             */
+/*   Updated: 2025/02/10 10:22:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-static char	*ft_get_buf(int fd, char **buffer, char **tmp_buffer)
+char	*ft_free(char *buffer, char *buf)
 {
-	int	len;
+	char	*temp;
 
-	while (!(*tmp_buffer) || !ft_strchr(*buffer, '\n'))
-	{
-		len = read(fd, *tmp_buffer, BUFFER_SIZE);
-		if (len < 0)
-		{
-			free(*tmp_buffer);
-			free(*buffer);
-			*buffer = NULL;
-			return (NULL);
-		}
-		if (len == 0)
-			break ;
-		(*tmp_buffer)[len] = '\0';
-		*buffer = ft_line_cat(buffer, *tmp_buffer);
-		if (!(*buffer))
-		{
-			free(*tmp_buffer);
-			return (NULL);
-		}
-	}
-	free(*tmp_buffer);
-	return (*buffer);
+	temp = ft_strjoin(buffer, buf);
+	free(buffer);
+	return (temp);
 }
 
-static char	*ft_get_line(char *buffer)
+char	*read_file(int fd, char *res)
+{
+	char	*buffer;
+	int		byte_read;
+
+	// malloc if res dont exist
+	if (!res)
+		res = ft_calloc(1, 1);
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	byte_read = 1;
+	while (byte_read > 0)
+	{
+		// while not eof read
+		byte_read = read(fd, buffer, BUFFER_SIZE);
+		if (byte_read == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[byte_read] = 0;
+		res = ft_free(res, buffer);
+		// quit if \n find
+		if (ft_strchr(buffer, '\n'))
+			break ;
+	}
+	free(buffer);
+	return (res);
+}
+
+// take line for return
+char	*ft_line(char *buffer)
 {
 	char	*line;
-	size_t	len;
+	int		i;
 
-	if (!buffer)
+	i = 0;
+	// if no line return NULL
+	if (!buffer[i])
 		return (NULL);
-	len = 0;
-	while (buffer[len] && buffer[len] != '\n')
-		len++;
-	if (buffer[len] == '\n')
-		len++;
-	line = (char *)malloc(len + 1);
-	if (!line)
-		return (NULL);
-	ft_strlcpy(line, buffer, len + 1); //verifier
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	// malloc to eol
+	line = ft_calloc(i + 2, sizeof(char));
+	i = 0;
+	// line = buffer
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	// if eol is \0 or \n, replace eol by \n
+	if (buffer[i] && buffer[i] == '\n')
+		line[i++] = '\n';
 	return (line);
 }
 
-static char	*ft_clean_buf(char *line, char **buffer)
+// delete line find
+char	*ft_next(char *buffer)
 {
-	int		start;
-	int		end;
-	char	*new_buffer;
+	int		i;
+	int		j;
+	char	*line;
 
-	if (!line || !buffer)
-		return (NULL);
-	start = ft_strlen(line);
-	end = ft_strlen(*buffer);
-	if (end - start < 0 || end - start == 0)
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (!buffer[i])
 	{
-		free(*buffer);
+		free(buffer);
 		return (NULL);
 	}
-	new_buffer = (char *)malloc(end - start + 1);
-	if (!new_buffer)
-	{
-		free(*buffer);
-		return (NULL);
-	}
-	ft_strlcpy(new_buffer, *buffer + start, end - start + 1);
-	free(*buffer);
-	return (new_buffer);
+	// len of file - len of firstline + 1
+	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
+	i++;
+	j = 0;
+	// line == buffer
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	free(buffer);
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*tmp_buffer;
 	char		*line;
 	static char	*buffer;
 
-	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE <= 0
-		|| BUFFER_SIZE >= INT_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	tmp_buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (!tmp_buffer)
-	{
-		free(buffer);
-		buffer = NULL;
+	buffer = read_file(fd, buffer);
+	if (!buffer)
 		return (NULL);
-	}
-	buffer = ft_get_buf(fd, &buffer, &tmp_buffer);
-	line = ft_get_line(buffer);
-	if (!line)
-	{
-		free(buffer);
-		buffer = NULL;
-		return (NULL);
-	}
-	buffer = ft_clean_buf(line, &buffer);
+	line = ft_line(buffer);
+	buffer = ft_next(buffer);
 	return (line);
 }
