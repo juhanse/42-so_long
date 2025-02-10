@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 17:19:02 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:41:09 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	quit_game(t_map *map)
 
 void	finish_game(t_map *map)
 {
-	mlx_string_put(map->mlx, map->wnd, 10, 10, 0x00FFFFFF, "You won!");
 	ft_printf("\x1B[32m🎉 You won!\x1B[37m\n");
 	quit_game(map);
 }
