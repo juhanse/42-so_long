@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 13:24:42 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 17:49:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define A 97
 # define ESC 65307
 # define IMG_PXL 64
-# define WND_NAME "so_long"
+# define WND_NAME "so_long - juhanse"
 
 typedef struct s_player
 {
