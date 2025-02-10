@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 10:32:01 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 13:14:25 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ int	ft_move(t_map *map, int axe, int pos)
 void	refresh_game(t_map *map)
 {
 	if (!map->mlx || !map->wnd)
+	{
 		ft_printf("Error\nFailed to refresh game\n");
+		quit_game(map);
+		exit(EXIT_FAILURE);
+	}
 	mlx_clear_window(map->mlx, map->wnd);
 	fill_game(map);
 	if (ft_count_items(map, 'E') == 0)
@@ -60,26 +64,21 @@ void	refresh_game(t_map *map)
 int	key_hook(int keycode, t_map *map)
 {
 	if (keycode == W || keycode == UP)
-	{
 		if (!ft_move(map, W, -1))
 			return (0);
-	}
 	else if (keycode == S || keycode == DOWN)
-	{
 		if (!ft_move(map, S, 1))
 			return (0);
-	}
 	else if (keycode == A || keycode == LEFT)
-	{
 		if (!ft_move(map, A, -1))
 			return (0);
-	}
 	else if (keycode == D || keycode == RIGHT)
-	{
 		if (!ft_move(map, D, 1))
 			return (0);
-	}
 	else if (keycode == ESC)
+	{
 		quit_game(map);
+		exit(EXIT_SUCCESS);
+	}
 	return (0);
 }
