@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 10:22:42 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:09:16 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	*ft_line(char *buffer)
 	int		i;
 
 	i = 0;
-	// if no line return NULL
 	if (!buffer[i])
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
@@ -71,9 +70,10 @@ char	*ft_line(char *buffer)
 		line[i] = buffer[i];
 		i++;
 	}
-	// if eol is \0 or \n, replace eol by \n
-	if (buffer[i] && buffer[i] == '\n')
+	if (buffer[i] == '\n')
 		line[i++] = '\n';
+	if (buffer[i] == '\0' && line[i - 1] != '\n')
+		line[i] = '\n';
 	return (line);
 }
 
