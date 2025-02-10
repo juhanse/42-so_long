@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 13:14:25 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 13:24:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	ft_move(t_map *map, int axe, int pos)
 
 	new_y = map->player.y;
 	new_x = map->player.x;
-	if (axe == W || axe == S)
+	if (axe == W || axe == S || axe == UP || axe == DOWN)
 		new_y += pos;
-	if (axe == D || axe == A)
+	if (axe == D || axe == A || axe == LEFT || axe == RIGHT)
 		new_x += pos;
 	if (map->map[new_y][new_x] == '1')
 		return (0);
@@ -63,18 +63,16 @@ void	refresh_game(t_map *map)
 
 int	key_hook(int keycode, t_map *map)
 {
-	if (keycode == W || keycode == UP)
-		if (!ft_move(map, W, -1))
+	if (keycode == W || keycode == UP || keycode == A || keycode == LEFT)
+	{
+		if (!ft_move(map, keycode, -1))
 			return (0);
-	else if (keycode == S || keycode == DOWN)
-		if (!ft_move(map, S, 1))
+	}
+	else if (keycode == S || keycode == DOWN || keycode == D || keycode == RIGHT)
+	{
+		if (!ft_move(map, keycode, 1))
 			return (0);
-	else if (keycode == A || keycode == LEFT)
-		if (!ft_move(map, A, -1))
-			return (0);
-	else if (keycode == D || keycode == RIGHT)
-		if (!ft_move(map, D, 1))
-			return (0);
+	}
 	else if (keycode == ESC)
 	{
 		quit_game(map);
