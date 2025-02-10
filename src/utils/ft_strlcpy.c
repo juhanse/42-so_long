@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:32:46 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/08 15:52:56 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:37:13 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	ft_strlcpy(char *dst, char *src, int size)
 		return (len);
 	while (++i < size - 1 && src[i])
 		dst[i] = src[i];
-	dst[i] = 0;
+	dst[i] = '\0';
 	return (len);
 }
