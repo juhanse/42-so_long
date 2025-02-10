@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 12:41:09 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:43:15 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	quit_game(t_map *map)
 	free(map->mlx);
 	ft_free_map(map);
 	ft_printf("Leave game\n");
-	exit(0);
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
