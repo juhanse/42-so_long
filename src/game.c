@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 13:12:15 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:14:08 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	load_img(t_map *map, char *path, int index)
 	{
 		ft_printf("Error\nFailed load image\n");
 		quit_game(map);
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -72,16 +71,26 @@ int	quit_game(t_map *map)
 	mlx_destroy_image(map->mlx, map->assets[4].img);
 	mlx_destroy_window(map->mlx, map->wnd);
 	mlx_destroy_display(map->mlx);
-	ft_free_map(map);
 	free(map->mlx);
+	ft_free_map(map); 
 	ft_printf("Leave game\n");
+	exit(EXIT_FAILURE);
 	return (0);
 }
 
 void	finish_game(t_map *map)
 {
+	mlx_destroy_image(map->mlx, map->assets[0].img);
+	mlx_destroy_image(map->mlx, map->assets[1].img);
+	mlx_destroy_image(map->mlx, map->assets[2].img);
+	mlx_destroy_image(map->mlx, map->assets[3].img);
+	mlx_destroy_image(map->mlx, map->assets[4].img);
+	mlx_destroy_window(map->mlx, map->wnd);
+	mlx_destroy_display(map->mlx);
+	free(map->mlx);
+	ft_free_map(map);
+	ft_printf("Leave game\n");
 	ft_printf("\x1B[32m🎉 You won!\x1B[37m\n");
-	quit_game(map);
 	exit(EXIT_SUCCESS);
 }
 
