@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 12:09:16 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 12:20:57 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ char	*read_file(int fd, char *res)
 	char	*buffer;
 	int		byte_read;
 
-	// malloc if res dont exist
 	if (!res)
 		res = ft_calloc(1, 1);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	byte_read = 1;
 	while (byte_read > 0)
 	{
-		// while not eof read
 		byte_read = read(fd, buffer, BUFFER_SIZE);
 		if (byte_read == -1)
 		{
@@ -42,7 +40,6 @@ char	*read_file(int fd, char *res)
 		}
 		buffer[byte_read] = 0;
 		res = ft_free(res, buffer);
-		// quit if \n find
 		if (ft_strchr(buffer, '\n'))
 			break ;
 	}
@@ -50,7 +47,6 @@ char	*read_file(int fd, char *res)
 	return (res);
 }
 
-// take line for return
 char	*ft_line(char *buffer)
 {
 	char	*line;
@@ -61,10 +57,8 @@ char	*ft_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	// malloc to eol
 	line = ft_calloc(i + 2, sizeof(char));
 	i = 0;
-	// line = buffer
 	while (buffer[i] && buffer[i] != '\n')
 	{
 		line[i] = buffer[i];
@@ -77,7 +71,6 @@ char	*ft_line(char *buffer)
 	return (line);
 }
 
-// delete line find
 char	*ft_next(char *buffer)
 {
 	int		i;
@@ -92,11 +85,9 @@ char	*ft_next(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	// len of file - len of firstline + 1
 	line = ft_calloc((ft_strlen(buffer) - i + 1), sizeof(char));
 	i++;
 	j = 0;
-	// line == buffer
 	while (buffer[i])
 		line[j++] = buffer[i++];
 	free(buffer);
