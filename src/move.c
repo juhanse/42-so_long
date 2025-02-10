@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/09 18:25:37 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 10:32:01 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	refresh_game(t_map *map)
 
 int	key_hook(int keycode, t_map *map)
 {
-	if (keycode == W || keycode == SPACE)
+	if (keycode == W || keycode == UP)
 	{
 		if (!ft_move(map, W, -1))
 			return (0);

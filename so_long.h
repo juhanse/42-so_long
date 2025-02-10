@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/09 18:25:11 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 10:33:25 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
 
+# define UP 65362
 # define DOWN 65364
 # define RIGHT 65363
 # define LEFT 65361
@@ -32,7 +37,6 @@
 # define S 115
 # define D 100
 # define A 97
-# define SPACE 32
 # define ESC 65307
 # define IMG_PXL 64
 # define WND_NAME "so_long"
@@ -74,10 +78,11 @@ int		ft_strlcpy(char *dst, char *src, int size);
 int		ft_printf(const char *s, ...);
 
 // GET_NEXT_LINE
-char	*ft_strchr(char *str, int to_find);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_line_cat(char **s1, char *s2);
 char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 
 // SO_LONG - MAP
 void	ft_init_map(t_map *map, char *map_path);
