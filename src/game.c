@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 13:09:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 13:12:15 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	fill_game(t_map *map)
 	map->player.x * IMG_PXL, map->player.y * IMG_PXL);
 }
 
-void	quit_game(t_map *map)
+int	quit_game(t_map *map)
 {
 	mlx_destroy_image(map->mlx, map->assets[0].img);
 	mlx_destroy_image(map->mlx, map->assets[1].img);
@@ -75,6 +75,7 @@ void	quit_game(t_map *map)
 	ft_free_map(map);
 	free(map->mlx);
 	ft_printf("Leave game\n");
+	return (0);
 }
 
 void	finish_game(t_map *map)
