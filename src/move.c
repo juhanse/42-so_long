@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 15:13:21 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:28:03 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,14 @@ void	refresh_game(t_map *map)
 
 int	key_hook(int keycode, t_map *map)
 {
-	if (keycode == W || keycode == UP || keycode == A || keycode == LEFT)
+	if (keycode == W || keycode == UP \
+	|| keycode == A || keycode == LEFT)
 	{
 		if (!ft_move(map, keycode, -1))
 			return (0);
 	}
-	else if (keycode == S || keycode == DOWN || keycode == D || keycode == RIGHT)
+	else if (keycode == S || keycode == DOWN \
+	|| keycode == D || keycode == RIGHT)
 	{
 		if (!ft_move(map, keycode, 1))
 			return (0);
