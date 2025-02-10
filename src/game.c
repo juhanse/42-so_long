@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 15:14:08 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:18:02 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	quit_game(t_map *map)
 	mlx_destroy_window(map->mlx, map->wnd);
 	mlx_destroy_display(map->mlx);
 	free(map->mlx);
-	ft_free_map(map); 
+	ft_free_map(map);
 	ft_printf("Leave game\n");
 	exit(EXIT_FAILURE);
 	return (0);

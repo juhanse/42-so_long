@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 13:24:50 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:13:21 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	refresh_game(t_map *map)
 	{
 		ft_printf("Error\nFailed to refresh game\n");
 		quit_game(map);
-		exit(EXIT_FAILURE);
 	}
 	mlx_clear_window(map->mlx, map->wnd);
 	fill_game(map);
@@ -74,9 +73,6 @@ int	key_hook(int keycode, t_map *map)
 			return (0);
 	}
 	else if (keycode == ESC)
-	{
 		quit_game(map);
-		exit(EXIT_SUCCESS);
-	}
 	return (0);
 }
