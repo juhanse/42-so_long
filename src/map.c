@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 15:30:45 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:21:58 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_read_map(t_map *map)
 	line = get_next_line(fd);
 	map->col = ft_strlen(line) - 1;
 	while (line)
-	{
+	{ 
 		ft_printf("%d [%d] %s\n", map->line, ft_strlen(line) - 1, line);
 		if (ft_strlen(line) - 1 != map->col)
 		{
@@ -68,6 +68,7 @@ void	ft_read_map(t_map *map)
 		map->line++;
 		line = get_next_line(fd);
 	}
+	printf("[LINE] %d - [COL] %d\n", map->line, map->col);
 	free(line);
 	close(fd);
 }
@@ -111,7 +112,7 @@ void	ft_fill_map(t_map *map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		ft_strlcpy(map->map[++i], line, map->col + 1);
+		ft_strlcpy(map->map[++i], line, ft_strlen(line));
 		free(line);
 		line = get_next_line(fd);
 	}
