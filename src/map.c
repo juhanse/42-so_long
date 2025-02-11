@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 18:39:57 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:08:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_read_map(t_map *map)
 {
 	int		fd;
 	char	*line;
+	int		len;
 
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
@@ -54,10 +55,14 @@ void	ft_read_map(t_map *map)
 		exit(EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
-	map->col = ft_strlen(line) - 1;
+	if (!line)
+		return ;
+	map->col = line[ft_strlen(line) - 1] == '\n' ? ft_strlen(line) - 1: ft_strlen(line);
 	while (line)
 	{
-		if (ft_strlen(line) - 1 != map->col)
+		printf("[%d] %d | %s\n", map->line, ft_strlen(line) - 1, line);
+		len = line[ft_strlen(line) - 1] == '\n' ? ft_strlen(line) - 1: ft_strlen(line);
+		if (len != map->col)
 		{
 			ft_printf("Error\nMap is not a rectangle\n");
 			free(line);
@@ -67,7 +72,8 @@ void	ft_read_map(t_map *map)
 		map->line++;
 		line = get_next_line(fd);
 	}
-	free(line);
+	if (line)
+		free(line);
 	close(fd);
 }
 
@@ -111,7 +117,8 @@ void	ft_fill_map(t_map *map)
 	while (line)
 	{
 		printf("%d | %s\n", ft_strlen(line), line);
-		ft_strlcpy(map->map[++i], line, ft_strlen(line));
+		if (ft_strlen(line) >= map->col)
+			ft_strlcpy(map->map[++i], line, ft_strlen(line));
 		free(line);
 		line = get_next_line(fd);
 	}

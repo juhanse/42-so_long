@@ -6,12 +6,12 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 14:42:34 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:06:26 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
-
+#include <string.h>
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
@@ -20,9 +20,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*buffer;
 
 	i = -1;
+	if (!s1 || !s2)
+		return (NULL);
+	if (!s1)
+		return (strdup(s2));
+	if (!s2)
+		return (strdup(s1)); 
 	total = ft_strlen(s1) + ft_strlen(s2);
-	buffer = malloc((total + 1) * sizeof(char));
-	if (!buffer || !s1 || !s2)
+	buffer = malloc((total + 1));
+	if (!buffer)
 		return (NULL);
 	while (s1[++i])
 		buffer[i] = s1[i];

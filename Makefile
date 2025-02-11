@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/02/10 16:25:58 by juhanse          ###   ########.fr        #
+#    Updated: 2025/02/11 14:40:42 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS_OBJS = $(addprefix $(PATH_SRCS), $(SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(SRCS_OBJS)
-	$(CC) $(SRCS_OBJS) -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 -o $(NAME)
+	$(CC) $(SRCS_OBJS) -ggdb -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 -o $(NAME)
 
 $(PATH_SRCS)%.o: $(PATH_SRCS)%.c $(HEADERS)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
