@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 17:59:33 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:06:53 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_count_items(t_map *map, char type)
 	while (++i < map->line)
 	{
 		j = -1;
-		while (j++ < map->col - 1)
+		while (++j < map->col)
 		{
 			if (map->map[i][j] == type)
 				count++;
@@ -32,7 +32,7 @@ int	ft_count_items(t_map *map, char type)
 	return (count);
 }
 
-static int	ft_check_char(t_map *map)
+int	ft_check_char(t_map *map)
 {
 	int	i;
 	int	j;
@@ -41,7 +41,7 @@ static int	ft_check_char(t_map *map)
 	while (++i < map->line)
 	{
 		j = -1;
-		while (j++ < map->col - 1)
+		while (++j < map->col)
 		{
 			if (map->map[i][j] != '0' && map->map[i][j] != '1' && \
 			map->map[i][j] != 'C' && map->map[i][j] != 'P' && \
@@ -55,7 +55,7 @@ static int	ft_check_char(t_map *map)
 	return (1);
 }
 
-static int	ft_check_walls(t_map *map)
+int	ft_check_walls(t_map *map)
 {
 	int	i;
 	int	j;
@@ -79,16 +79,16 @@ static int	ft_check_walls(t_map *map)
 	return (1);
 }
 
-static void	ft_find_player(t_map *map)
+void	ft_find_player(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (map->map[++i])
+	while (++i < map->line)
 	{
 		j = -1;
-		while (map->map[i][++j])
+		while (++j < map->col)
 		{
 			if (map->map[i][j] == 'P')
 			{
@@ -102,7 +102,7 @@ static void	ft_find_player(t_map *map)
 
 void	ft_parse_map(t_map *map)
 {
-	if (!map || !map->map || !map->map[0])
+	if (!map->map[0])
 	{
 		ft_free_map(map);
 		ft_printf("Error\nMap is empty\n");

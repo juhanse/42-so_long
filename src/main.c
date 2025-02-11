@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 12:38:22 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:44:42 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_init_map(t_map *map, char *map_path)
 	*map = (t_map){0};
 	map->map_path = map_path;
 	ft_check_path(map);
-	ft_read_map(map);
+	ft_check_dimensions(map);
 	ft_allocate_map(map);
 	ft_fill_map(map);
 	ft_parse_map(map);

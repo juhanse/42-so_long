@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 16:18:47 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:09:08 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	fill_game(t_map *map)
 	while (++i < map->line)
 	{
 		j = -1;
-		while (j++ < map->col - 1)
+		while (j++ < map->col)
 		{
 			if (map->map[i][j] == '0' || map->map[i][j] == 'P')
 				mlx_put_image_to_window(map->mlx, map->wnd, map->assets[0].img, \

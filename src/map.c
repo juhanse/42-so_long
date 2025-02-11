@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 15:08:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:14:44 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,30 +42,32 @@ void	ft_check_path(t_map *map)
 	}
 }
 
-void	ft_read_map(t_map *map)
+void	ft_check_dimensions(t_map *map)
 {
 	int		fd;
-	char	*line;
 	int		len;
+	char	*line;
 
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
 	{
-		printf("Error\nBad path map\n");
+		close(fd);
 		exit(EXIT_FAILURE);
 	}
 	line = get_next_line(fd);
-	if (!line)
-		return ;
-	map->col = line[ft_strlen(line) - 1] == '\n' ? ft_strlen(line) - 1: ft_strlen(line);
+	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
-		printf("[%d] %d | %s\n", map->line, ft_strlen(line) - 1, line);
-		len = line[ft_strlen(line) - 1] == '\n' ? ft_strlen(line) - 1: ft_strlen(line);
+		if (line[ft_strlen(line) - 1] == '\n')
+			len = ft_strlen(line) - 1;
+		else
+			len = ft_strlen(line);
+		printf("[%d] %d | %s\n", map->line, len, line);
 		if (len != map->col)
 		{
 			ft_printf("Error\nMap is not a rectangle\n");
 			free(line);
+			close(fd);
 			exit(EXIT_FAILURE);
 		}
 		free(line);
@@ -116,9 +118,7 @@ void	ft_fill_map(t_map *map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("%d | %s\n", ft_strlen(line), line);
-		if (ft_strlen(line) >= map->col)
-			ft_strlcpy(map->map[++i], line, ft_strlen(line));
+		ft_strlcpy(map->map[++i], line, map->col + 1);
 		free(line);
 		line = get_next_line(fd);
 	}

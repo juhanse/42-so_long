@@ -6,77 +6,133 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 15:06:26 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 15:13:57 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
-#include <string.h>
-char	*ft_strjoin(char *s1, char *s2)
+
+int	len_to_ln(t_stack *stack)
+{
+	int		i;
+	int		len;
+	t_gnl	*current;
+
+	if (stack == NULL)
+		return (0);
+	len = 0;
+	current = stack->top;
+	while (current != NULL)
+	{
+		i = 0;
+		while (current->str[i])
+		{
+			if (current->str[i] == '\n')
+			{
+				len++;
+				return (len);
+			}
+			i++;
+			len++;
+		}
+		current = current->next;
+	}
+	return (len);
+}
+
+char	*ft_strcpy(char *str, t_stack *stack)
 {
 	int		i;
 	int		j;
-	int		total;
-	char	*buffer;
+	t_gnl	*current;
 
-	i = -1;
-	if (!s1 || !s2)
-		return (NULL);
-	if (!s1)
-		return (strdup(s2));
-	if (!s2)
-		return (strdup(s1)); 
-	total = ft_strlen(s1) + ft_strlen(s2);
-	buffer = malloc((total + 1));
-	if (!buffer)
-		return (NULL);
-	while (s1[++i])
-		buffer[i] = s1[i];
-	j = -1;
-	while (s2[++j])
+	j = 0;
+	current = stack->top;
+	while (current != NULL)
 	{
-		buffer[i] = s2[j];
-		i++;
+		i = 0;
+		while (current->str[i])
+		{
+			if (current->str[i] == '\n')
+			{
+				str[j++] = '\n';
+				str[j] = '\0';
+				break ;
+			}
+			str[j++] = current->str[i++];
+		}
+		current = current->next;
 	}
-	buffer[total] = '\0';
-	return (buffer);
+	str[j] = '\0';
+	return (str);
 }
 
-char	*ft_strchr(char *s, int c)
+void	deallocate(t_stack *list, t_gnl *new_node, char *buffer)
 {
-	size_t	i;
-	char	search;
+	t_gnl	*temp;
 
-	i = 0;
-	search = (char) c;
-	while (s[i] && s[i] != search)
-		i++;
-	if (s[i] == search)
-		return ((char *) s + i);
-	return (NULL);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	char	*str;
-	size_t	i;
-
-	str = (char *)s;
-	i = 0;
-	while (i < n)
+	while (list->top != NULL)
 	{
-		str[i] = '\0';
-		i++;
+		temp = list->top->next;
+		free(list->top->str);
+		free(list->top);
+		list->top = temp;
+	}
+	list->top = NULL;
+	list->size = 0;
+	if (new_node && new_node->str && new_node->str[0])
+	{
+		list->top = new_node;
+		list->size = 1;
+	}
+	else
+	{
+		free(new_node);
+		free(buffer);
 	}
 }
 
-void	*ft_calloc(size_t count, size_t size)
+int	new_line(t_stack *stack)
+{
+	int		i;
+	t_gnl	*current;
+
+	current = stack->top;
+	while (current != NULL)
+	{
+		i = 0;
+		while (current->str[i] && i < BUFFER_SIZE)
+		{
+			if (current->str[i] == '\n')
+				return (1);
+			i++;
+		}
+		current = current->next;
+	}
+	return (0);
+}
+
+char	*extract_after_newline(t_stack *stack)
 {
 	char	*buffer;
+	t_gnl	*last;
+	int		i;
+	int		j;
 
-	buffer = malloc(size * count);
-	if (!buffer)
+	i = 0;
+	j = 0;
+	last = stack->top;
+	while (last && last->next != NULL)
+		last = last->next;
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!last || !buffer)
 		return (NULL);
-	ft_bzero(buffer, size * count);
+	while (last->str[i] != '\n' && last->str[i] != '\0')
+		i++;
+	if (last->str[i] == '\n')
+		i++;
+	while (last->str[i] != '\0')
+		buffer[j++] = last->str[i++];
+	buffer[j] = '\0';
 	return (buffer);
 }
