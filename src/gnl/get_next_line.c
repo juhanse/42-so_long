@@ -6,120 +6,231 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 15:12:46 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:15:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-void	next_call(t_stack *stack)
+static char	*fill_stash(int fd, char *stash)
 {
-	t_gnl	*new_node;
-	char	*buffer;
+	char	buff[BUFFER_SIZE + 1];
+	int		readed;
+	char	*tmp;
 
-	if (!stack || !stack->top)
-		return ;
-	buffer = extract_after_newline(stack);
-	if (!buffer)
-		return ;
-	new_node = malloc(sizeof(t_gnl));
-	if (!new_node)
+	readed = 1;
+	while (readed > 0)
 	{
-		free(buffer);
-		return ;
+		readed = read(fd, buff, BUFFER_SIZE);
+		if (readed == -1)
+		{
+			free(stash);
+			return (NULL);
+		}
+		buff[readed] = '\0';
+		tmp = ft_strjoin_gnl(stash, buff);
+		free(stash);
+		stash = tmp;
+		if (stash && ft_strchr_gnl(stash, '\n'))
+			break ;
 	}
-	new_node->str = buffer;
-	new_node->next = NULL;
-	deallocate(stack, new_node, buffer);
+	return (stash);
 }
 
-char	*get_da_line(t_stack *stack)
+static int	get_len_line(char *s)
 {
-	int		len;
-	char	*str_ln;
+	int	i;
 
-	len = len_to_ln(stack);
-	str_ln = malloc(len + 1);
-	if (!str_ln)
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
+		return (i + 2);
+	return (i + 1);
+}
+
+static char	*add_to_line(char *s)
+{
+	char	*line;
+	int		i;
+	int		len_line;
+
+	if (!s || !*s)
 		return (NULL);
-	ft_strcpy(str_ln, stack);
-	return (str_ln);
-}
-
-void	add_stack(t_stack *stack, char *buffer)
-{
-	t_gnl	*new_node;
-	t_gnl	*last;
-
-	new_node = malloc(sizeof(t_gnl));
-	if (new_node == NULL)
-		return ;
-	if (stack->size < 1)
-		stack->top = new_node;
+	len_line = get_len_line(s);
+	line = malloc(sizeof(char) * (len_line));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\n' && s[i] != '\0')
+	{
+		line[i] = s[i];
+		i++;
+	}
+	if (s[i] == '\n')
+	{
+		line[i] = '\n';
+		line[i + 1] = '\0';
+	}
 	else
-	{
-		last = stack->top;
-		while (last->next != NULL)
-			last = last->next;
-		last->next = new_node;
-	}
-	new_node->next = NULL;
-	new_node->str = buffer;
-	stack->size++;
+		line[i] = '\0';
+	return (line);
 }
 
-void	create(t_stack *list, int fd)
+static char	*add_static(char *s)
 {
-	char	*buffer;
-	int		char_read;
+	char	*stash;
+	int		i;
 
-	while (!new_line(list))
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (!s[i])
 	{
-		buffer = malloc(BUFFER_SIZE + 1);
-		if (!buffer)
-			return ;
-		char_read = read(fd, buffer, BUFFER_SIZE);
-		if (char_read < 0)
-		{
-			free(buffer);
-			deallocate(list, NULL, NULL);
-			return ;
-		}
-		if (char_read == 0)
-		{
-			free(buffer);
-			return ;
-		}
-		buffer[char_read] = '\0';
-		add_stack(list, buffer);
+		free(s);
+		return (NULL);
 	}
+	stash = ft_strdup(s + i + 1);
+	free(s);
+	return (stash);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_stack	*node = NULL;
-	char			*get_next_ln;
+	static char	*stash = NULL;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &get_next_ln, 0) < 0)
-		return (NULL);
-	if (!node)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
-		node = malloc(sizeof(t_stack));
-		if (!node)
-			return (NULL);
-		node->top = NULL;
-		node->size = 0;
-	}
-	create(node, fd);
-	if (!new_line(node) && node->size == 0)
-	{
-		free(node);
-		node = NULL;
+		if (stash)
+		{
+			free(stash);
+			stash = NULL;
+		}
 		return (NULL);
 	}
-	get_next_ln = get_da_line(node);
-	if (!get_next_ln)
-		return (deallocate(node, NULL, NULL), NULL);
-	next_call(node);
-	return (get_next_ln);
+	stash = fill_stash(fd, stash);
+	if (!stash)
+		return (NULL);
+	line = add_to_line(stash);
+	if (!line)
+	{
+		free(stash);
+		stash = NULL;
+		return (NULL);
+	}
+	stash = add_static(stash);
+	return (line);
 }
+
+// void	next_call(t_stack *stack)
+// {
+// 	t_gnl	*new_node;
+// 	char	*buffer;
+
+// 	if (!stack || !stack->top)
+// 		return ;
+// 	buffer = extract_after_newline(stack);
+// 	if (!buffer)
+// 		return ;
+// 	new_node = malloc(sizeof(t_gnl));
+// 	if (!new_node)
+// 	{
+// 		free(buffer);
+// 		return ;
+// 	}
+// 	new_node->str = buffer;
+// 	new_node->next = NULL;
+// 	deallocate(stack, new_node, buffer);
+// }
+
+// char	*get_da_line(t_stack *stack)
+// {
+// 	int		len;
+// 	char	*str_ln;
+
+// 	len = len_to_ln(stack);
+// 	str_ln = malloc(len + 1);
+// 	if (!str_ln)
+// 		return (NULL);
+// 	ft_strcpy(str_ln, stack);
+// 	return (str_ln);
+// }
+
+// void	add_stack(t_stack *stack, char *buffer)
+// {
+// 	t_gnl	*new_node;
+// 	t_gnl	*last;
+
+// 	new_node = malloc(sizeof(t_gnl));
+// 	if (new_node == NULL)
+// 		return ;
+// 	if (stack->size < 1)
+// 		stack->top = new_node;
+// 	else
+// 	{
+// 		last = stack->top;
+// 		while (last->next != NULL)
+// 			last = last->next;
+// 		last->next = new_node;
+// 	}
+// 	new_node->next = NULL;
+// 	new_node->str = buffer;
+// 	stack->size++;
+// }
+
+// void	create(t_stack *list, int fd)
+// {
+// 	char	*buffer;
+// 	int		char_read;
+
+// 	while (!new_line(list))
+// 	{
+// 		buffer = malloc(BUFFER_SIZE + 1);
+// 		if (!buffer)
+// 			return ;
+// 		char_read = read(fd, buffer, BUFFER_SIZE);
+// 		if (char_read < 0)
+// 		{
+// 			free(buffer);
+// 			deallocate(list, NULL, NULL);
+// 			return ;
+// 		}
+// 		if (char_read == 0)
+// 		{
+// 			free(buffer);
+// 			return ;
+// 		}
+// 		buffer[char_read] = '\0';
+// 		add_stack(list, buffer);
+// 	}
+// }
+
+// char	*get_next_line(int fd)
+// {
+// 	static t_stack	*node = NULL;
+// 	char			*get_next_ln;
+
+// 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &get_next_ln, 0) < 0)
+// 		return (NULL);
+// 	if (!node)
+// 	{
+// 		node = malloc(sizeof(t_stack));
+// 		if (!node)
+// 			return (NULL);
+// 		node->top = NULL;
+// 		node->size = 0;
+// 	}
+// 	create(node, fd);
+// 	if (!new_line(node) && node->size == 0)
+// 	{
+// 		free(node);
+// 		node = NULL;
+// 		return (NULL);
+// 	}
+// 	get_next_ln = get_da_line(node);
+// 	if (!get_next_ln)
+// 		return (deallocate(node, NULL, NULL), NULL);
+// 	next_call(node);
+// 	return (get_next_ln);
+// }

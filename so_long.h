@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 15:44:27 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:08:41 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,29 +72,11 @@ int		ft_printf(const char *s, ...);
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000000
 # endif
-
-typedef struct s_gnl
-{
-	char			*str;
-	struct s_gnl	*next;
-}	t_gnl;
-
-typedef struct t_stack
-{
-	t_gnl	*top;
-	int		size;
-}	t_stack;
-
-void	deallocate(t_stack *list, t_gnl *new_node, char *buffer);
-void	add_stack(t_stack *stack, char *buffer);
-char	*ft_strcpy(char *str, t_stack *stack);
-void	create(t_stack *list, int fd);
-char	*get_da_line(t_stack *stack);
-void	next_call(t_stack *stack);
 char	*get_next_line(int fd);
-int		len_to_ln(t_stack *stack);
-int		new_line(t_stack *stack);
-char	*extract_after_newline(t_stack *stack);
+int		ft_strchr_gnl(const char *s, char c);
+size_t	ft_strlen_gnl(const char *str);
+char	*ft_strdup(const char *src);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 // SO_LONG - MAP
 void	ft_init_map(t_map *map, char *map_path);
