@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 16:14:44 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:58:22 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ void	ft_check_dimensions(t_map *map)
 
 	fd = open(map->map_path, O_RDONLY);
 	if (fd < 0)
+		exit(EXIT_FAILURE);
+	line = get_next_line(fd);
+	if (!line)
 	{
 		close(fd);
 		exit(EXIT_FAILURE);
 	}
-	line = get_next_line(fd);
 	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
