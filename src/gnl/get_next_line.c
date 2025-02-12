@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:09:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 13:06:00 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:28:24 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,5 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	stash = update_buffer(stash);
-	// if (!stash)
-	// {
-	// 	free(stash);
-	// 	stash = NULL;
-	// }
 	return (line);
 }
