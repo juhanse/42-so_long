@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 13:04:45 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:46:35 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define ESC 65307
 # define IMG_PXL 64
 # define WND_NAME "so_long - juhanse"
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000000
+# endif
 
 typedef struct s_player
 {
@@ -65,13 +69,11 @@ typedef struct s_map
 // UTILS
 int		ft_isalnum(int c);
 int		ft_strlen(char *s);
+int		ft_line_len(char *s);
 int		ft_strlcpy(char *dst, char *src, int size);
 int		ft_printf(const char *s, ...);
 
 // GET_NEXT_LINE
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000000
-# endif
 char	*get_next_line(int fd);
 int		ft_strchr_gnl(const char *s, char c);
 size_t	ft_strlen_gnl(const char *str);

@@ -6,22 +6,20 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 12:18:37 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:46:56 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
 
-static int	ft_line_len(char *s)
+static void	ft_free_line(int fd, char *line)
 {
-	int	len;
-
-	if (s[ft_strlen(s) - 1] == '\n')
-		len = ft_strlen(s) - 1;
-	else
-		len = ft_strlen(s);
-	return (len);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
 }
 
 void	ft_check_path(t_map *map)
@@ -59,7 +57,7 @@ void	ft_check_dimensions(t_map *map)
 		if (len != map->col)
 		{
 			ft_printf("Error\nMap is not a rectangle\n");
-			free(line);
+			ft_free_line(fd, line);
 			close(fd);
 			exit(EXIT_FAILURE);
 		}
