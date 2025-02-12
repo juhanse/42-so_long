@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 12:18:51 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:04:45 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*get_next_line(int fd);
 int		ft_strchr_gnl(const char *s, char c);
 size_t	ft_strlen_gnl(const char *str);
 char	*ft_strdup(const char *src);
+int		get_len_line(char *s);
 char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 // SO_LONG - MAP

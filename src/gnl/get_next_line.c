@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:09:06 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 12:58:17 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:06:00 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static char	*fill_stash(int fd, char *stash)
 {
-	char	buff[BUFFER_SIZE + 1];
 	int		readed;
 	char	*tmp;
+	char	buff[BUFFER_SIZE + 1];
 
 	readed = 1;
 	while (readed > 0)
@@ -37,23 +37,11 @@ static char	*fill_stash(int fd, char *stash)
 	return (stash);
 }
 
-static int	get_len_line(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	if (s[i] == '\n')
-		return (i + 2);
-	return (i + 1);
-}
-
 static char	*add_to_line(char *s)
 {
-	char	*line;
 	int		i;
 	int		len_line;
+	char	*line;
 
 	if (!s || !*s)
 		return (NULL);
@@ -77,10 +65,10 @@ static char	*add_to_line(char *s)
 	return (line);
 }
 
-static char	*add_static(char *s)
+static char	*update_buffer(char *s)
 {
-	char	*stash;
 	int		i;
+	char	*stash;
 
 	i = 0;
 	while (s[i] && s[i] != '\n')
@@ -97,8 +85,8 @@ static char	*add_static(char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash = NULL;
 	char		*line;
+	static char	*stash = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
@@ -119,7 +107,7 @@ char	*get_next_line(int fd)
 		stash = NULL;
 		return (NULL);
 	}
-	stash = add_static(stash);
+	stash = update_buffer(stash);
 	// if (!stash)
 	// {
 	// 	free(stash);

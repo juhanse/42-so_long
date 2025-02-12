@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 11:14:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 12:58:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:04:33 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,16 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2)
 		str[i] = s2[i - len_s1];
 	str[i] = '\0';
 	return (str);
+}
+
+int	get_len_line(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
+		return (i + 2);
+	return (i + 1);
 }
