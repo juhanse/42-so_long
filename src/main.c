@@ -6,12 +6,23 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 15:44:42 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 12:18:26 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
+
+void	ft_free_map(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while (++i < map->line)
+		free(map->map[i]);
+	free(map->map);
+	map->map = NULL;
+}
 
 void	ft_init_map(t_map *map, char *map_path)
 {

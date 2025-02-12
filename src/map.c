@@ -6,22 +6,22 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 17:27:52 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/12 12:18:37 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../mlx/mlx.h"
 
-void	ft_free_map(t_map *map)
+static int	ft_line_len(char *s)
 {
-	int	i;
+	int	len;
 
-	i = -1;
-	while (++i < map->line)
-		free(map->map[i]);
-	free(map->map);
-	map->map = NULL;
+	if (s[ft_strlen(s) - 1] == '\n')
+		len = ft_strlen(s) - 1;
+	else
+		len = ft_strlen(s);
+	return (len);
 }
 
 void	ft_check_path(t_map *map)
@@ -55,11 +55,7 @@ void	ft_check_dimensions(t_map *map)
 	map->col = ft_strlen(line) - 1;
 	while (line)
 	{
-		if (line[ft_strlen(line) - 1] == '\n')
-			len = ft_strlen(line) - 1;
-		else
-			len = ft_strlen(line);
-		printf("[%d] %d | %s\n", map->line, len, line);
+		len = ft_line_len(line);
 		if (len != map->col)
 		{
 			ft_printf("Error\nMap is not a rectangle\n");
@@ -71,8 +67,7 @@ void	ft_check_dimensions(t_map *map)
 		map->line++;
 		line = get_next_line(fd);
 	}
-	if (line)
-		free(line);
+	free(line);
 	close(fd);
 }
 
