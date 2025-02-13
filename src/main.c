@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 12:18:26 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/13 12:31:09 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 	{
 		ft_printf("Error\nInvalid arguments\n");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	ft_init_map(&map, argv[1]);
 	map.mlx = mlx_init();
