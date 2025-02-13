@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/10 15:28:03 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:26:07 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ft_move(t_map *map, int axe, int pos)
 	map->player.y = new_y;
 	map->player.x = new_x;
 	refresh_game(map);
-	ft_printf("\nMOVE: %d | %d\n", map->player.y, map->player.x);
 	ft_printf("You moved %d\n", ++map->move_count);
 	return (1);
 }
