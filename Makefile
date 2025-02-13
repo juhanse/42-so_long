@@ -6,13 +6,18 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/02/12 17:47:12 by juhanse          ###   ########.fr        #
+#    Updated: 2025/02/13 09:30:28 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
+
+COLOUR_GREEN=\033[0;32m
+COLOUR_RED=\033[0;31m
+COLOUR_BLUE=\033[0;34m
+COLOUR_END=\033[0m
 
 PATH_SRCS = src/
 
@@ -27,15 +32,18 @@ all: $(NAME)
 
 $(NAME): $(SRCS_OBJS)
 	$(CC) $(SRCS_OBJS) -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 -o $(NAME)
+	@echo "$(COLOUR_GREEN)Compiled ✅$(COLOUR_END)"
 
 $(PATH_SRCS)%.o: $(PATH_SRCS)%.c $(HEADERS)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean:
 	rm -f $(SRCS_OBJS)
+	@echo "$(COLOUR_RED)Cleaned 🧹$(COLOUR_END)"
 
 fclean: clean
 	rm -f $(NAME)
+	@echo "$(COLOUR_RED)Cleaned all 🧹$(COLOUR_END)"
 
 re: fclean all
 
