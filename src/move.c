@@ -6,12 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/13 09:26:07 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/16 01:46:23 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include "../mlx/mlx.h"
 
 void	ft_hooks(t_map *map)
 {

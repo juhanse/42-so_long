@@ -6,12 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 13:34:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/12 17:46:56 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/16 01:46:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include "../mlx/mlx.h"
 
 static void	ft_free_line(int fd, char *line)
 {

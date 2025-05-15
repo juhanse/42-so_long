@@ -6,12 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/13 12:31:09 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/16 01:47:43 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include "../mlx/mlx.h"
 
 void	ft_free_map(t_map *map)
 {

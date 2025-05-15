@@ -6,12 +6,11 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/13 09:27:26 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/05/16 01:46:17 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-#include "../mlx/mlx.h"
 
 void	load_img(t_map *map, char *path, int index)
 {
