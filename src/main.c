@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:35:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:55:41 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 	data.mlx = mlx_init();
 	data.wnd = mlx_new_window(data.mlx, data.col * IMG_PXL, \
 		data.line * IMG_PXL, WND_NAME);
-	ft_start_game(&data);
+	if (!ft_start_game(&data))
+		return (1);
 	mlx_loop(data.mlx);
 	return (0);
 }
