@@ -2,8 +2,7 @@
 
 # SO_LONG
 mlx
-*/*.o
-*/*/*.o
+*.o
 so_long
 
 # MACOS
