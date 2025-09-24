@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:28:30 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:36:01 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_asset
 	int		height;
 }	t_asset;
 
-typedef struct s_map
+typedef struct s_data
 {
 	char		*map_path;
 	char		**map;
@@ -65,7 +65,7 @@ typedef struct s_map
 	void		*wnd;
 	t_player	player;
 	t_asset		assets[5];
-}	t_map;
+}	t_data;
 
 // UTILS
 int		ft_isalnum(int c);
@@ -83,29 +83,29 @@ int		get_len_line(char *s);
 char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 // SO_LONG - MAP
-void	ft_free_map(t_map *map);
-int		ft_initialization(t_map *map, char *map_path);
-int		ft_check_path(t_map *map);
-int		ft_count_items(t_map *map, char type);
-void	ft_parse_map(t_map *map);
-void	ft_check_dimensions(t_map *map);
-void	ft_allocate_map(t_map *map);
-void	ft_fill_map(t_map *map);
+void	ft_free_map(t_data *data);
+int		ft_initialization(t_data *data, char *map_path);
+int		ft_check_path(t_data *data);
+int		ft_count_items(t_data *data, char type);
+int		ft_parse_map(t_data *data);
+int		ft_check_dimensions(t_data *data);
+int		ft_allocate_map(t_data *data);
+int		ft_fill_map(t_data *data);
+
 // SO_LONG - GAME
-void	ft_hooks(t_map *map);
-void	load_img(t_map *map, char *path, int index);
-void	fill_game(t_map *map);
-void	ft_start_game(t_map *map);
-void	refresh_game(t_map *map);
-int		quit_game(t_map *map);
-void	finish_game(t_map *map);
+void	ft_hooks(t_data *data);
+void	load_img(t_data *data, char *path, int index);
+void	fill_game(t_data *data);
+void	ft_start_game(t_data *data);
+void	refresh_game(t_data *data);
+int		quit_game(t_data *data);
+void	finish_game(t_data *data);
 // SO_LONG - MOVE
-int		key_hook(int keycode, t_map *map);
-int		ft_move(t_map *map, int axe, int pos);
+int		key_hook(int keycode, t_data *data);
+int		ft_move(t_data *data, int axe, int pos);
 // SO_LONG - FLOOD FILL
-void	ft_free_copy(t_map *map);
-void	ft_copy_map(t_map *map);
-void	flood_fill(t_map *map, int x, int y, int *collects);
-void	ft_map_reachable(t_map *map);
+void	ft_copy_map(t_data *data);
+void	ft_flood_fill(t_data *data, int x, int y, int *collects);
+int		ft_map_reachable(t_data *data);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/02/11 16:06:53 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:46:05 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	ft_count_items(t_map *map, char type)
+int	ft_count_items(t_data *data, char type)
 {
 	int	i;
 	int	j;
@@ -20,32 +20,32 @@ int	ft_count_items(t_map *map, char type)
 
 	i = -1;
 	count = 0;
-	while (++i < map->line)
+	while (++i < data->line)
 	{
 		j = -1;
-		while (++j < map->col)
+		while (++j < data->col)
 		{
-			if (map->map[i][j] == type)
+			if (data->map[i][j] == type)
 				count++;
 		}
 	}
 	return (count);
 }
 
-int	ft_check_char(t_map *map)
+int	ft_check_char(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (++i < map->line)
+	while (++i < data->line)
 	{
 		j = -1;
-		while (++j < map->col)
+		while (++j < data->col)
 		{
-			if (map->map[i][j] != '0' && map->map[i][j] != '1' && \
-			map->map[i][j] != 'C' && map->map[i][j] != 'P' && \
-			map->map[i][j] != 'E')
+			if (data->map[i][j] != '0' && data->map[i][j] != '1' && \
+			data->map[i][j] != 'C' && data->map[i][j] != 'P' && \
+			data->map[i][j] != 'E')
 			{
 				ft_printf("Error\nInvalid characters\n");
 				return (0);
@@ -55,20 +55,20 @@ int	ft_check_char(t_map *map)
 	return (1);
 }
 
-int	ft_check_walls(t_map *map)
+int	ft_check_walls(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (++i < map->line)
+	while (++i < data->line)
 	{
 		j = -1;
-		while (++j < map->col)
+		while (++j < data->col)
 		{
-			if (i == 0 || i == map->line - 1 || j == 0 || j == map->col - 1)
+			if (i == 0 || i == data->line - 1 || j == 0 || j == data->col - 1)
 			{
-				if (map->map[i][j] != '1')
+				if (data->map[i][j] != '1')
 				{
 					ft_printf("Error\nMissing walls\n");
 					return (0);
@@ -79,47 +79,36 @@ int	ft_check_walls(t_map *map)
 	return (1);
 }
 
-void	ft_find_player(t_map *map)
+void	ft_find_player(t_data *data)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (++i < map->line)
+	while (++i < data->line)
 	{
 		j = -1;
-		while (++j < map->col)
+		while (++j < data->col)
 		{
-			if (map->map[i][j] == 'P')
+			if (data->map[i][j] == 'P')
 			{
-				map->player.x = j;
-				map->player.y = i;
+				data->player.x = j;
+				data->player.y = i;
 				return ;
 			}
 		}
 	}
 }
 
-void	ft_parse_map(t_map *map)
+int	ft_parse_map(t_data *data)
 {
-	if (!map->map[0])
-	{
-		ft_free_map(map);
-		ft_printf("Error\nMap is empty\n");
-		exit(EXIT_FAILURE);
-	}
-	if (!ft_check_char(map) || !ft_check_walls(map))
-	{
-		ft_free_map(map);
-		exit(EXIT_FAILURE);
-	}
-	if (ft_count_items(map, 'E') != 1 || ft_count_items(map, 'P') != 1 \
-	|| ft_count_items(map, 'C') < 1)
-	{
-		ft_free_map(map);
-		ft_printf("Error\nInvalid number of items\n");
-		exit(EXIT_FAILURE);
-	}
-	map->collects = ft_count_items(map, 'C');
-	ft_find_player(map);
+	if (!data->map[0])
+		return (perror("Error\nMap is empty\n"), ft_free_map(data), 0);
+	if (!ft_check_char(data) || !ft_check_walls(data))
+		return (perror("Error\nInvalid char\n"), ft_free_map(data), 0);
+	if (ft_count_items(data, 'E') != 1 || ft_count_items(data, 'P') != 1 || ft_count_items(data, 'C') < 1)
+		return (perror("Error\nInvalid number of items\n"), ft_free_map(data), 0);
+	data->collects = ft_count_items(data, 'C');
+	ft_find_player(data);
+	return (1);
 }
