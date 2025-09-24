@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:56:51 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:00:44 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2);
 // SO_LONG - MAP
 void	ft_free_map(t_data *data);
 int		ft_initialization(t_data *data, char *map_path);
-int		ft_check_path(t_data *data);
 int		ft_count_items(t_data *data, char type);
 int		ft_parse_map(t_data *data);
 int		ft_check_dimensions(t_data *data);

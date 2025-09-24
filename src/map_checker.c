@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:58:03 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:01:37 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ int	ft_map_reachable(t_data *data)
 	ft_flood_fill(data, data->player.y, data->player.x, &collects);
 	ft_free_copy(data);
 	if (data->exit_found != 1 || collects != 0)
-		return (perror("Error\nMap is not reachable\n"), ft_free_map(data), 0);
+		return (ft_free_map(data), 0);
 	return (1);
 }

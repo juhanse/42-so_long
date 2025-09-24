@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:23:16 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:44:22 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:01:50 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_free_map(t_data *data)
 	data->map = NULL;
 }
 
-int	ft_check_path(t_data *data)
+static int	ft_check_path(t_data *data)
 {
 	int	len;
 
@@ -49,7 +49,9 @@ int	ft_initialization(t_data *data, char *map_path)
 		return (perror("Error\nAllocate map failed\n"), 0);
 	if (!ft_fill_map(data))
 		return (perror("Error\nFill map failed\n"), 0);
-	ft_parse_map(data);
-	ft_map_reachable(data);
+	if (!ft_parse_map(data))
+		return (0);
+	if (!ft_map_reachable(data))
+		return (perror("Error\nMap is not reachable\n"), 0);
 	return (1);
 }

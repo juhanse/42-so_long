@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:37:38 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:55:12 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	refresh_game(t_data *data)
 		quit_game(data);
 	}
 	mlx_clear_window(data->mlx, data->wnd);
-	fill_game(data);
+	ft_fill_game(data);
 	if (ft_count_items(data, 'E') == 0)
 		finish_game(data);
 }
