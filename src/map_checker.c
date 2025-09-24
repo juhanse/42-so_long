@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:47:12 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:58:03 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,22 @@ static void	ft_free_copy(t_data *data)
 	data->copy = NULL;
 }
 
-void	ft_copy_map(t_data *data)
+static int	ft_copy_map(t_data *data)
 {
 	int	i;
 
 	data->copy = malloc(data->line * sizeof(char *));
 	if (!data->copy)
-	{
-		ft_printf("Error\nMalloc failed for map copy\n");
-		ft_free_map(data);
-		exit(EXIT_FAILURE);
-	}
+		return (perror("Error\nMalloc failed for map copy\n"), ft_free_map(data), 0);
 	i = -1;
 	while (++i < data->line)
 	{
 		data->copy[i] = malloc((data->col + 1) * sizeof(char));
 		if (!data->copy[i])
-		{
-			ft_printf("Error\nMalloc failed for map copy\n");
-			ft_free_map(data);
-			ft_free_copy(data);
-			exit(EXIT_FAILURE);
-		}
+			return (perror("Error\nMalloc failed for map copy\n"), ft_free_map(data), ft_free_copy(data), 0);
 		ft_strlcpy(data->copy[i], data->map[i], data->col + 1);
 	}
+	return (1);
 }
 
 void	ft_flood_fill(t_data *data, int x, int y, int *collects)
@@ -71,7 +63,8 @@ int	ft_map_reachable(t_data *data)
 	int	collects;
 
 	collects = data->collects;
-	ft_copy_map(data);
+	if (!ft_copy_map(data))
+		return (0);
 	ft_flood_fill(data, data->player.y, data->player.x, &collects);
 	ft_free_copy(data);
 	if (data->exit_found != 1 || collects != 0)
