@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/09/24 17:15:18 by juhanse          ###   ########.fr        #
+#    Updated: 2025/09/24 17:23:55 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ COLOUR_END=\033[0m
 OBJDIR = objs/
 GNL = gnl/get_next_line_utils.c gnl/get_next_line.c
 UTILS = utils/ft_isalnum.c utils/ft_strlen.c utils/ft_strlcpy.c utils/ft_printf.c utils/ft_line_len.c
-SRC = main.c map.c parsing.c map_checker.c game.c move.c
+SRC = main.c init.c map.c parsing.c map_checker.c game.c move.c
 FILES = $(addprefix src/, $(SRC:.c=.o) $(UTILS:.c=.o) $(GNL:.c=.o) $(LIB:.c=.o))
 OBJS = $(addprefix $(OBJDIR), $(FILES:.c=.o))
 
