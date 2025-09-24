@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/16 01:47:50 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:19:29 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		get_len_line(char *s);
 char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 // SO_LONG - MAP
-void	ft_init_map(t_map *map, char *map_path);
+void	ft_initialization(t_map *map, char *map_path);
 void	ft_free_map(t_map *map);
 void	ft_check_path(t_map *map);
 int		ft_count_items(t_map *map, char type);
@@ -95,7 +95,7 @@ void	ft_fill_map(t_map *map);
 void	ft_hooks(t_map *map);
 void	load_img(t_map *map, char *path, int index);
 void	fill_game(t_map *map);
-void	start_game(t_map *map);
+void	ft_start_game(t_map *map);
 void	refresh_game(t_map *map);
 int		quit_game(t_map *map);
 void	finish_game(t_map *map);

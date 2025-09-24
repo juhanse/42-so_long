@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/05/16 01:47:43 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:19:26 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	ft_free_map(t_map *map)
 	map->map = NULL;
 }
 
-void	ft_init_map(t_map *map, char *map_path)
+void	ft_initialization(t_map *map, char *map_path)
 {
-	*map = (t_map){0};
 	map->map_path = map_path;
 	ft_check_path(map);
 	ft_check_dimensions(map);
@@ -41,15 +40,13 @@ int	main(int argc, char **argv)
 	t_map	map;
 
 	if (argc != 2)
-	{
-		ft_printf("Error\nInvalid arguments\n");
-		exit(EXIT_FAILURE);
-	}
-	ft_init_map(&map, argv[1]);
+		return (perror("Error\nInvalid arguments\n"), 1);
+	map = (t_map){0};
+	ft_initialization(&map, argv[1]);
 	map.mlx = mlx_init();
 	map.wnd = mlx_new_window(map.mlx, map.col * IMG_PXL, \
 		map.line * IMG_PXL, WND_NAME);
-	start_game(&map);
+	ft_start_game(&map);
 	mlx_loop(map.mlx);
 	return (0);
 }
