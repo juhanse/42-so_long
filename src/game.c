@@ -6,33 +6,27 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:35:12 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:55:10 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	load_img(t_data *data, char *path, int index)
+int	ft_load_img(t_data *data, char *path, int index)
 {
 	if (!path || data->assets[index].img)
-	{
-		ft_printf("Error\nFailed load image\n");
-		ft_free_map(data);
-		exit(EXIT_FAILURE);
-	}
+		return (perror("Error\nFailed load image\n"), ft_free_map(data), 0);
 	data->assets[index].path = path;
 	data->assets[index].width = IMG_PXL;
 	data->assets[index].height = IMG_PXL;
 	data->assets[index].img = mlx_xpm_file_to_image(data->mlx, path, \
 	&data->assets[index].width, &data->assets[index].height);
 	if (!data->assets[index].img)
-	{
-		ft_printf("Error\nFailed load image\n");
-		quit_game(data);
-	}
+		return (perror("Error\nFailed load image\n"), ft_free_map(data), 0);
+	return (1);
 }
 
-void	fill_game(t_data *data)
+void	ft_fill_game(t_data *data)
 {
 	int	i;
 	int	j;
@@ -83,13 +77,19 @@ void	finish_game(t_data *data)
 	quit_game(data);
 }
 
-void	ft_start_game(t_data *data)
+int	ft_start_game(t_data *data)
 {
-	load_img(data, "./assets/floor.xpm", 0);
-	load_img(data, "./assets/wall.xpm", 1);
-	load_img(data, "./assets/player.xpm", 2);
-	load_img(data, "./assets/item.xpm", 3);
-	load_img(data, "./assets/exit.xpm", 4);
-	fill_game(data);
+	if (!ft_load_img(data, "./assets/floor.xpm", 0))
+		return (0);
+	if (!ft_load_img(data, "./assets/wall.xpm", 1))
+		return (0);
+	if (!ft_load_img(data, "./assets/player.xpm", 2))
+		return (0);
+	if (!ft_load_img(data, "./assets/item.xpm", 3))
+		return (0);
+	if (!ft_load_img(data, "./assets/exit.xpm", 4))
+		return (0);
+	ft_fill_game(data);
 	ft_hooks(data);
+	return (1);
 }
