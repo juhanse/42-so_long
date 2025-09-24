@@ -6,13 +6,13 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:21:11 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:55:10 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:04:44 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	ft_load_img(t_data *data, char *path, int index)
+static int	ft_load_img(t_data *data, char *path, int index)
 {
 	if (!path || data->assets[index].img)
 		return (perror("Error\nFailed load image\n"), ft_free_map(data), 0);
@@ -55,7 +55,7 @@ void	ft_fill_game(t_data *data)
 	data->player.x * IMG_PXL, data->player.y * IMG_PXL);
 }
 
-int	quit_game(t_data *data)
+int	ft_quit_game(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->assets[0].img);
 	mlx_destroy_image(data->mlx, data->assets[1].img);
@@ -74,7 +74,7 @@ int	quit_game(t_data *data)
 void	finish_game(t_data *data)
 {
 	ft_printf("\x1B[32m🎉 You won!\x1B[37m\n");
-	quit_game(data);
+	ft_quit_game(data);
 }
 
 int	ft_start_game(t_data *data)

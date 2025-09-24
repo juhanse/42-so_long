@@ -6,15 +6,47 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:15:39 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:55:12 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:06:02 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+static int	key_hook(int keycode, t_data *data)
+{
+	if (keycode == W || keycode == UP \
+	|| keycode == A || keycode == LEFT)
+	{
+		if (!ft_move(data, keycode, -1))
+			return (0);
+	}
+	else if (keycode == S || keycode == DOWN \
+	|| keycode == D || keycode == RIGHT)
+	{
+		if (!ft_move(data, keycode, 1))
+			return (0);
+	}
+	else if (keycode == ESC)
+		ft_quit_game(data);
+	return (0);
+}
+
+static void	refresh_game(t_data *data)
+{
+	if (!data->mlx || !data->wnd)
+	{
+		ft_printf("Error\nFailed to refresh game\n");
+		ft_quit_game(data);
+	}
+	mlx_clear_window(data->mlx, data->wnd);
+	ft_fill_game(data);
+	if (ft_count_items(data, 'E') == 0)
+		finish_game(data);
+}
+
 void	ft_hooks(t_data *data)
 {
-	mlx_hook(data->wnd, 17, 0, &quit_game, data);
+	mlx_hook(data->wnd, 17, 0, &ft_quit_game, data);
 	mlx_key_hook(data->wnd, key_hook, data);
 }
 
@@ -43,36 +75,4 @@ int	ft_move(t_data *data, int axe, int pos)
 	refresh_game(data);
 	ft_printf("You moved %d\n", ++data->move_count);
 	return (1);
-}
-
-void	refresh_game(t_data *data)
-{
-	if (!data->mlx || !data->wnd)
-	{
-		ft_printf("Error\nFailed to refresh game\n");
-		quit_game(data);
-	}
-	mlx_clear_window(data->mlx, data->wnd);
-	ft_fill_game(data);
-	if (ft_count_items(data, 'E') == 0)
-		finish_game(data);
-}
-
-int	key_hook(int keycode, t_data *data)
-{
-	if (keycode == W || keycode == UP \
-	|| keycode == A || keycode == LEFT)
-	{
-		if (!ft_move(data, keycode, -1))
-			return (0);
-	}
-	else if (keycode == S || keycode == DOWN \
-	|| keycode == D || keycode == RIGHT)
-	{
-		if (!ft_move(data, keycode, 1))
-			return (0);
-	}
-	else if (keycode == ESC)
-		quit_game(data);
-	return (0);
 }

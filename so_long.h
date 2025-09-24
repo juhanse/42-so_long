@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 18:00:44 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 18:06:08 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,10 @@ int		ft_fill_map(t_data *data);
 
 // SO_LONG - GAME
 void	ft_hooks(t_data *data);
-int		ft_load_img(t_data *data, char *path, int index);
 void	ft_fill_game(t_data *data);
 int		ft_start_game(t_data *data);
-void	refresh_game(t_data *data);
-int		quit_game(t_data *data);
+int		ft_quit_game(t_data *data);
 void	finish_game(t_data *data);
-// SO_LONG - MOVE
-int		key_hook(int keycode, t_data *data);
 int		ft_move(t_data *data, int axe, int pos);
 // SO_LONG - FLOOD FILL
 void	ft_flood_fill(t_data *data, int x, int y, int *collects);
