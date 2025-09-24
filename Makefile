@@ -6,7 +6,7 @@
 #    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/05/16 01:48:09 by juhanse          ###   ########.fr        #
+#    Updated: 2025/09/24 17:15:18 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,13 @@ OBJDIR = objs/
 GNL = gnl/get_next_line_utils.c gnl/get_next_line.c
 UTILS = utils/ft_isalnum.c utils/ft_strlen.c utils/ft_strlcpy.c utils/ft_printf.c utils/ft_line_len.c
 SRC = main.c map.c parsing.c map_checker.c game.c move.c
-FILES = $(addprefix src/, $(SRC:.c=.o) $(UTILS:.c=.o) $(LIB:.c=.o))
+FILES = $(addprefix src/, $(SRC:.c=.o) $(UTILS:.c=.o) $(GNL:.c=.o) $(LIB:.c=.o))
 OBJS = $(addprefix $(OBJDIR), $(FILES:.c=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11 -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -g -o $(NAME) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 	@echo "$(COLOUR_GREEN)Compiled ✅$(COLOUR_END)"
 
 $(OBJDIR)%.o : %.c
