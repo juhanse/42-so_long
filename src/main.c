@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:16:38 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:23:36 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/09/24 17:28:53 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (perror("Error\nInvalid arguments\n"), 1);
 	map = (t_map){0};
-	ft_initialization(&map, argv[1]);
+	if (!ft_initialization(&map, argv[1]))
+		return (1);
 	map.mlx = mlx_init();
 	map.wnd = mlx_new_window(map.mlx, map.col * IMG_PXL, \
 		map.line * IMG_PXL, WND_NAME);
