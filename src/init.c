@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:23:16 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 18:01:50 by juhanse          ###   ########.fr       */
+/*   Updated: 2025/10/08 17:28:28 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,15 @@ void	ft_free_map(t_data *data)
 	data->map = NULL;
 }
 
-static int	ft_check_path(t_data *data)
+static int	ft_check_path(char *path)
 {
 	int	len;
 
-	len = ft_strlen(data->map_path);
-	if (access(data->map_path, R_OK))
-		return (1);
-	if (data->map_path[len - 1] != 'r' || data->map_path[len - 2] != 'e' || \
-	data->map_path[len - 3] != 'b' || data->map_path[len - 4] != '.')
+	len = ft_strlen(path);
+	if (path[len - 1] != 'r' || path[len - 2] != 'e' || \
+	path[len - 3] != 'b' || path[len - 4] != '.')
 		return (0);
-	if (!ft_isalnum(data->map_path[len - 5]))
+	if (!ft_isalnum(path[len - 5]))
 		return (0);
 	return (1);
 }
@@ -41,7 +39,9 @@ static int	ft_check_path(t_data *data)
 int	ft_initialization(t_data *data, char *map_path)
 {
 	data->map_path = map_path;
-	if (!ft_check_path(data))
+	if (access(data->map_path, R_OK))
+		return (perror("Error\nPermission denied\n"), 0);
+	if (!ft_check_path(data->map_path))
 		return (perror("Error\nBad format path map\n"), 0);
 	if (!ft_check_dimensions(data))
 		return (perror("Error\nMap is not a rectangle\n"), 0);
