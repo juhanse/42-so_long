@@ -45,7 +45,7 @@ int	ft_check_char(t_data *data)
 		{
 			if (data->map[i][j] != '0' && data->map[i][j] != '1' && \
 			data->map[i][j] != 'C' && data->map[i][j] != 'P' && \
-			data->map[i][j] != 'E')
+			data->map[i][j] != 'E' && data->map[i][j] != 'A')
 			{
 				ft_printf("Error\nInvalid characters\n");
 				return (0);
@@ -108,7 +108,10 @@ int	ft_parse_map(t_data *data)
 		return (perror("Error\nInvalid char\n"), ft_free_map(data), 0);
 	if (ft_count_items(data, 'E') != 1 || ft_count_items(data, 'P') != 1 || ft_count_items(data, 'C') < 1)
 		return (perror("Error\nInvalid number of items\n"), ft_free_map(data), 0);
+	if (ft_count_items(data, 'A') > 1)
+		return (ft_printf("Error\nToo many enemies\n"), ft_free_map(data), 0);
 	data->collects = ft_count_items(data, 'C');
 	ft_find_player(data);
+	ft_find_enemy(data);
 	return (1);
 }

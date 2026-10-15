@@ -49,12 +49,14 @@
 #define WND_NAME "so_long - juhanse"
 
 #define ANIM_SPEED 2500
+#define ENEMY_SPEED 8
 #define ASSET_FLOOR 0
 #define ASSET_WALL 1
 #define ASSET_EXIT 2
 #define ASSET_PLAYER 3
 #define ASSET_ITEM 8
-#define ASSET_COUNT 10
+#define ASSET_ENEMY 10
+#define ASSET_COUNT 11
 #define PLAYER_FRAMES 5
 #define ITEM_FRAMES 2
 
@@ -66,6 +68,14 @@ typedef struct s_player {
   int x;
   int y;
 } t_player;
+
+typedef struct s_enemy {
+  int x;
+  int y;
+  int dir;
+  int exists;
+  int timer;
+} t_enemy;
 
 typedef struct s_asset {
   void *img;
@@ -86,10 +96,12 @@ typedef struct s_data {
   void *mlx;
   void *wnd;
   t_player player;
+  t_enemy enemy;
   t_asset assets[ASSET_COUNT];
   int player_frame;
   int item_frame;
   int loop_count;
+  unsigned int seed;
 } t_data;
 
 // UTILS
@@ -126,6 +138,11 @@ int ft_quit_game(t_data *data);
 void finish_game(t_data *data);
 int ft_move(t_data *data, int axe, int pos);
 int ft_anim_loop(t_data *data);
+
+// SO_LONG - ENEMY
+void ft_find_enemy(t_data *data);
+void ft_enemy_patrol(t_data *data);
+void lose_game(t_data *data);
 
 // SO_LONG - FLOOD FILL
 void ft_flood_fill(t_data *data, int x, int y, int *collects);

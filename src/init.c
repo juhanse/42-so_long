@@ -36,6 +36,7 @@ static int ft_check_path(char *path) {
 
 int ft_initialization(t_data *data, char *map_path) {
   data->map_path = map_path;
+  data->seed = 42;
   if (access(data->map_path, R_OK))
     return (perror("Error\nPermission denied\n"), 0);
   if (!ft_check_path(data->map_path))

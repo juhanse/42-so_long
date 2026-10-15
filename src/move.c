@@ -52,6 +52,15 @@ int	ft_anim_loop(t_data *data)
 		data->loop_count = 0;
 		data->player_frame = (data->player_frame + 1) % PLAYER_FRAMES;
 		data->item_frame = (data->item_frame + 1) % ITEM_FRAMES;
+		if (data->enemy.exists)
+		{
+			data->enemy.timer++;
+			if (data->enemy.timer >= ENEMY_SPEED)
+			{
+				data->enemy.timer = 0;
+				ft_enemy_patrol(data);
+			}
+		}
 		ft_fill_game(data);
 	}
 	return (0);
@@ -77,6 +86,8 @@ int	ft_move(t_data *data, int axe, int pos)
 		new_x += pos;
 	if (data->map[new_y][new_x] == '1')
 		return (0);
+	if (data->enemy.exists && new_x == data->enemy.x && new_y == data->enemy.y)
+		lose_game(data);
 	if (data->map[new_y][new_x] == 'C')
 	{
 		data->collects--;

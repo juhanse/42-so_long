@@ -51,6 +51,10 @@ void ft_fill_game(t_data *data) {
     while (++j < data->col)
       ft_render_tile(data, i, j);
   }
+  if (data->enemy.exists)
+    mlx_put_image_to_window(data->mlx, data->wnd,
+                            data->assets[ASSET_ENEMY].img,
+                            data->enemy.x * IMG_PXL, data->enemy.y * IMG_PXL);
   mlx_put_image_to_window(data->mlx, data->wnd,
                           data->assets[ASSET_PLAYER + data->player_frame].img,
                           data->player.x * IMG_PXL, data->player.y * IMG_PXL);
@@ -82,7 +86,8 @@ int ft_start_game(t_data *data) {
       !ft_load_img(data, "./assets/player/player4.xpm", ASSET_PLAYER + 3) ||
       !ft_load_img(data, "./assets/player/player5.xpm", ASSET_PLAYER + 4) ||
       !ft_load_img(data, "./assets/item/item1.xpm", ASSET_ITEM) ||
-      !ft_load_img(data, "./assets/item/item2.xpm", ASSET_ITEM + 1))
+      !ft_load_img(data, "./assets/item/item2.xpm", ASSET_ITEM + 1) ||
+      !ft_load_img(data, "./assets/attack.xpm", ASSET_ENEMY))
     return (0);
   ft_fill_game(data);
   ft_hooks(data);
