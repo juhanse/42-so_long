@@ -11,95 +11,124 @@
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-# define SO_LONG_H
+#define SO_LONG_H
 
 #include "mlx/mlx.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <unistd.h>
-# include <stdarg.h>
+#include <fcntl.h>
+#include <limits.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-# define UP 65362
-# define DOWN 65364
-# define RIGHT 65363
-# define LEFT 65361
-# define W 119
-# define S 115
-# define D 100
-# define A 97
-# define ESC 65307
-# define IMG_PXL 64
-# define WND_NAME "so_long - juhanse"
+// LINUX
+/*
+#define UP 65362
+#define DOWN 65364
+#define RIGHT 65363
+#define LEFT 65361
+#define W 119
+#define S 115
+#define D 100
+#define A 97
+#define ESC 65307
+*/
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000000
-# endif
+// MACOS
+#define UP 126
+#define DOWN 125
+#define RIGHT 124
+#define LEFT 123
+#define W 13
+#define S 1
+#define D 2
+#define A 0
+#define ESC 53
 
-typedef struct s_player
-{
-	int	x;
-	int	y;
-}	t_player;
+#define IMG_PXL 64
+#define WND_NAME "so_long - juhanse"
 
-typedef struct s_asset
-{
-	void	*img;
-	char	*path;
-	int		width;
-	int		height;
-}	t_asset;
+#define ANIM_SPEED 2500
+#define ASSET_FLOOR 0
+#define ASSET_WALL 1
+#define ASSET_EXIT 2
+#define ASSET_PLAYER 3
+#define ASSET_ITEM 8
+#define ASSET_COUNT 10
+#define PLAYER_FRAMES 5
+#define ITEM_FRAMES 2
 
-typedef struct s_data
-{
-	char		*map_path;
-	char		**map;
-	char		**copy;
-	int			line;
-	int			col;
-	int			collects;
-	int			move_count;
-	int			exit_found;
-	void		*mlx;
-	void		*wnd;
-	t_player	player;
-	t_asset		assets[5];
-}	t_data;
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 1000000
+#endif
+
+typedef struct s_player {
+  int x;
+  int y;
+} t_player;
+
+typedef struct s_asset {
+  void *img;
+  char *path;
+  int width;
+  int height;
+} t_asset;
+
+typedef struct s_data {
+  char *map_path;
+  char **map;
+  char **copy;
+  int line;
+  int col;
+  int collects;
+  int move_count;
+  int exit_found;
+  void *mlx;
+  void *wnd;
+  t_player player;
+  t_asset assets[ASSET_COUNT];
+  int player_frame;
+  int item_frame;
+  int loop_count;
+} t_data;
 
 // UTILS
-int		ft_isalnum(int c);
-int		ft_strlen(char *s);
-int		ft_line_len(char *s);
-int		ft_strlcpy(char *dst, char *src, int size);
-int		ft_printf(const char *s, ...);
+int ft_isalnum(int c);
+int ft_strlen(char *s);
+int ft_line_len(char *s);
+int ft_strlcpy(char *dst, char *src, int size);
+int ft_printf(const char *s, ...);
+char *ft_itoa(int n);
 
 // GET_NEXT_LINE
-char	*get_next_line(int fd);
-int		ft_strchr_gnl(const char *s, char c);
-size_t	ft_strlen_gnl(const char *str);
-char	*ft_strdup(const char *src);
-int		get_len_line(char *s);
-char	*ft_strjoin_gnl(char const *s1, char const *s2);
+char *get_next_line(int fd);
+int ft_strchr_gnl(const char *s, char c);
+size_t ft_strlen_gnl(const char *str);
+char *ft_strdup(const char *src);
+int get_len_line(char *s);
+char *ft_strjoin_gnl(char const *s1, char const *s2);
 
 // SO_LONG - MAP
-void	ft_free_map(t_data *data);
-int		ft_initialization(t_data *data, char *map_path);
-int		ft_count_items(t_data *data, char type);
-int		ft_parse_map(t_data *data);
-int		ft_check_dimensions(t_data *data);
-int		ft_allocate_map(t_data *data);
-int		ft_fill_map(t_data *data);
+void ft_display_moves(t_data *data);
+void ft_free_map(t_data *data);
+int ft_initialization(t_data *data, char *map_path);
+int ft_count_items(t_data *data, char type);
+int ft_parse_map(t_data *data);
+int ft_check_dimensions(t_data *data);
+int ft_allocate_map(t_data *data);
+int ft_fill_map(t_data *data);
 
 // SO_LONG - GAME
-void	ft_hooks(t_data *data);
-void	ft_fill_game(t_data *data);
-int		ft_start_game(t_data *data);
-int		ft_quit_game(t_data *data);
-void	finish_game(t_data *data);
-int		ft_move(t_data *data, int axe, int pos);
+void ft_hooks(t_data *data);
+void ft_fill_game(t_data *data);
+int ft_start_game(t_data *data);
+int ft_quit_game(t_data *data);
+void finish_game(t_data *data);
+int ft_move(t_data *data, int axe, int pos);
+int ft_anim_loop(t_data *data);
+
 // SO_LONG - FLOOD FILL
-void	ft_flood_fill(t_data *data, int x, int y, int *collects);
-int		ft_map_reachable(t_data *data);
+void ft_flood_fill(t_data *data, int x, int y, int *collects);
+int ft_map_reachable(t_data *data);
 
 #endif

@@ -44,10 +44,24 @@ static void	refresh_game(t_data *data)
 		finish_game(data);
 }
 
+int	ft_anim_loop(t_data *data)
+{
+	data->loop_count++;
+	if (data->loop_count >= ANIM_SPEED)
+	{
+		data->loop_count = 0;
+		data->player_frame = (data->player_frame + 1) % PLAYER_FRAMES;
+		data->item_frame = (data->item_frame + 1) % ITEM_FRAMES;
+		ft_fill_game(data);
+	}
+	return (0);
+}
+
 void	ft_hooks(t_data *data)
 {
 	mlx_hook(data->wnd, 17, 0, &ft_quit_game, data);
 	mlx_key_hook(data->wnd, key_hook, data);
+	mlx_loop_hook(data->mlx, ft_anim_loop, data);
 }
 
 int	ft_move(t_data *data, int axe, int pos)
