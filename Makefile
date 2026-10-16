@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+         #
+#    By: juhanse <juhanse@student.42belgium.be>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 17:16:52 by juhanse           #+#    #+#              #
-#    Updated: 2025/09/24 17:23:55 by juhanse          ###   ########.fr        #
+#    Updated: 2026/10/16 15:01:46 by juhanse          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJS = $(addprefix $(OBJDIR), $(FILES:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -g -o $(NAME) -Lmlx -lmlx -framework OpenGL -framework AppKit
+	$(CC) $(CFLAGS) $(OBJS) -g -o $(NAME) -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 	@echo "$(COLOUR_GREEN)Compiled ✅$(COLOUR_END)"
 
 $(OBJDIR)%.o : %.c
