@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
+/*   By: juhanse <juhanse@student.42belgium.be>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:38:25 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 17:46:05 by juhanse          ###   ########.fr       */
+/*   Updated: 2026/10/16 15:10:40 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,10 @@ int	ft_parse_map(t_data *data)
 		return (perror("Error\nMap is empty\n"), ft_free_map(data), 0);
 	if (!ft_check_char(data) || !ft_check_walls(data))
 		return (perror("Error\nInvalid char\n"), ft_free_map(data), 0);
-	if (ft_count_items(data, 'E') != 1 || ft_count_items(data, 'P') != 1 || ft_count_items(data, 'C') < 1)
-		return (perror("Error\nInvalid number of items\n"), ft_free_map(data), 0);
+	if (ft_count_items(data, 'E') != 1 || ft_count_items(data, 'P') != 1 \
+	|| ft_count_items(data, 'C') < 1)
+		return (perror("Error\nInvalid number of items\n"), \
+		ft_free_map(data), 0);
 	if (ft_count_items(data, 'A') > 1)
 		return (ft_printf("Error\nToo many enemies\n"), ft_free_map(data), 0);
 	data->collects = ft_count_items(data, 'C');

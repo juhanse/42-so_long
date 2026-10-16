@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juhanse <juhanse@student.s19.be>           +#+  +:+       +#+        */
+/*   By: juhanse <juhanse@student.42belgium.be>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 16:12:33 by juhanse           #+#    #+#             */
-/*   Updated: 2025/09/24 18:01:37 by juhanse          ###   ########.fr       */
+/*   Updated: 2026/10/16 15:11:20 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ static int	ft_copy_map(t_data *data)
 
 	data->copy = malloc(data->line * sizeof(char *));
 	if (!data->copy)
-		return (perror("Error\nMalloc failed for map copy\n"), ft_free_map(data), 0);
+		return (perror("Error\nMalloc failed for map copy\n"), \
+	ft_free_map(data), 0);
 	i = -1;
 	while (++i < data->line)
 	{
 		data->copy[i] = malloc((data->col + 1) * sizeof(char));
 		if (!data->copy[i])
-			return (perror("Error\nMalloc failed for map copy\n"), ft_free_map(data), ft_free_copy(data), 0);
+			return (perror("Error\nMalloc failed for map copy\n"), \
+		ft_free_map(data), ft_free_copy(data), 0);
 		ft_strlcpy(data->copy[i], data->map[i], data->col + 1);
 	}
 	return (1);
