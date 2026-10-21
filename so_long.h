@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.42belgium.be>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:46:35 by juhanse           #+#    #+#             */
-/*   Updated: 2026/10/16 15:10:03 by juhanse          ###   ########.fr       */
+/*   Updated: 2026/10/21 17:08:01 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@
 # define ASSET_COUNT 11
 # define PLAYER_FRAMES 5
 # define ITEM_FRAMES 2
+
+# define DIR_X {0, 1, 0, -1}
+# define DIR_Y {-1, 0, 1, 0}
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1000000

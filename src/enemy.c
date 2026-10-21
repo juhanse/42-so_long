@@ -6,7 +6,7 @@
 /*   By: juhanse <juhanse@student.42belgium.be>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 15:02:08 by juhanse           #+#    #+#             */
-/*   Updated: 2026/10/16 15:19:33 by juhanse          ###   ########.fr       */
+/*   Updated: 2026/10/21 17:11:41 by juhanse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,52 +57,35 @@ static int	is_valid_tile(t_data *data, int x, int y)
 
 static int	ft_choose_dir(t_data *data, int x, int y, int dir)
 {
-	static const int dx[4] = {0, 1, 0, -1};
-	static const int dy[4] = {-1, 0, 1, 0};
-	int f;
-	int r;
-	int l;
+	int	dx[4] = DIR_X;
+	int	dy[4] = DIR_Y;
+	int	tries;
 
-	f = is_valid_tile(data, x + dx[dir], y + dy[dir]);
-	r = is_valid_tile(data, x + dx[(dir + 1) % 4], y + dy[(dir + 1) % 4]);
-	l = is_valid_tile(data, x + dx[(dir + 3) % 4], y + dy[(dir + 3) % 4]);
-	data->seed = data->seed * 1103515245 + 12345;
-	if (f && (r || l) && ((data->seed / 65536) % 100 < 25))
-		f = 0;
-	if (f)
-		return (dir);
-	if (r && l && ((data->seed / 65536) % 2 == 0))
-		return ((dir + 1) % 4);
-	if (r && l)
-		return ((dir + 3) % 4);
-	if (r)
-		return ((dir + 1) % 4);
-	if (l)
-		return ((dir + 3) % 4);
-	if (is_valid_tile(data, x + dx[(dir + 2) % 4], y + dy[(dir + 2) % 4]))
-		return ((dir + 2) % 4);
+	tries = 0;
+	while (tries < 4)
+	{
+		if (is_valid_tile(data, x + dx[dir], y + dy[dir]))
+			return (dir);
+		dir = (dir + 1) % 4;
+		tries++;
+	}
 	return (dir);
 }
 
 void	ft_enemy_patrol(t_data *data)
 {
-	static const int dx[4] = {0, 1, 0, -1};
-	static const int dy[4] = {-1, 0, 1, 0};
-	int new_dir;
-	int nx;
-	int ny;
+	int	dx[4] = DIR_X;
+	int	dy[4] = DIR_Y;
 
 	if (!data->enemy.exists)
 		return ;
-	new_dir = ft_choose_dir(data, data->enemy.x, \
+	data->enemy.dir = ft_choose_dir(data, data->enemy.x, \
 		data->enemy.y, data->enemy.dir);
-	data->enemy.dir = new_dir;
-	nx = data->enemy.x + dx[new_dir];
-	ny = data->enemy.y + dy[new_dir];
-	if (is_valid_tile(data, nx, ny))
+	if (is_valid_tile(data, data->enemy.x + dx[data->enemy.dir], \
+		data->enemy.y + dy[data->enemy.dir]))
 	{
-		data->enemy.x = nx;
-		data->enemy.y = ny;
+		data->enemy.x += dx[data->enemy.dir];
+		data->enemy.y += dy[data->enemy.dir];
 	}
 	if (data->enemy.x == data->player.x && \
 		data->enemy.y == data->player.y)
