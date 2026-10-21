@@ -1,40 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juhanse <juhanse@student.42belgium.be>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/21 16:59:44 by juhanse           #+#    #+#             */
+/*   Updated: 2026/10/21 17:00:52 by juhanse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../so_long.h"
 
-static size_t ft_count_digit(int n) {
-  size_t i;
-  int temp;
+static size_t	ft_count_digit(int n)
+{
+	size_t	i;
+	int		temp;
 
-  i = 0;
-  temp = n;
-  if (temp == 0)
-    return (1);
-  while (temp != 0) {
-    temp = temp / 10;
-    i++;
-  }
-  return (i);
+	i = 0;
+	temp = n;
+	if (temp == 0)
+		return (1);
+	while (temp != 0)
+	{
+		temp = temp / 10;
+		i++;
+	}
+	return (i);
 }
 
-char *ft_itoa(int n) {
-  long num;
-  size_t digits;
-  char *buffer;
+char	*ft_itoa(int n)
+{
+	long	num;
+	size_t	digits;
+	char	*buffer;
 
-  num = n;
-  digits = ft_count_digit(n);
-  if (n < 0) {
-    num *= -1;
-    digits++;
-  }
-  buffer = (char *)malloc((digits + 1) * sizeof(char));
-  if (!buffer)
-    return (NULL);
-  buffer[digits] = '\0';
-  while (digits--) {
-    buffer[digits] = num % 10 + '0';
-    num = num / 10;
-  }
-  if (n < 0)
-    buffer[0] = '-';
-  return (buffer);
+	num = n;
+	digits = ft_count_digit(n);
+	if (n < 0)
+	{
+		num *= -1;
+		digits++;
+	}
+	buffer = (char *)malloc((digits + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+	buffer[digits] = '\0';
+	while (digits--)
+	{
+		buffer[digits] = num % 10 + '0';
+		num = num / 10;
+	}
+	if (n < 0)
+		buffer[0] = '-';
+	return (buffer);
 }
